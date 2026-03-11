@@ -1342,7 +1342,7 @@ const App = {
         ${u?`<button class="nav-link ${this.state.page==='dashboard'?'active':''}" onclick="App.go('dashboard')">Dashboard</button>
         <button class="nav-link ${this.state.page==='my-courses'?'active':''}" onclick="App.go('my-courses')">My Courses</button>`:''}
         ${u&&u.role==='admin'?`<button class="nav-link ${this.state.page==='admin'?'active':''}" onclick="App.go('admin')">Admin</button>`:''}
-        <a href="https://mykru.ca" target="_blank" rel="noopener" class="nav-kru-link" title="Discover Kru — Streamline your property maintenance"><img src="krulogoblack.png" alt="Kru" style="height:15px;object-fit:contain;filter:brightness(0) invert(1)"> Maintenance Platform</a>
+        <a href="https://mykru.ca" target="_blank" rel="noopener" class="nav-kru-link" title="Discover Kru — Streamline your property maintenance"><img src="krulogoblack.png" alt="Kru" style="height:15px;object-fit:contain;filter:invert(1);mix-blend-mode:screen"> Maintenance Platform</a>
       </div>
       <div class="nav-right">
         ${u?`<button class="notif-btn" onclick="App.state.showNotifPanel=!App.state.showNotifPanel;App.render()">&#128276;${uc>0?`<span class="notif-badge">${uc>9?'9+':uc}</span>`:''}</button>
