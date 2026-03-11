@@ -829,6 +829,245 @@ if(!localStorage.getItem('kru_seeded_v6')){
 
 
 // ================================================================
+//  LEGAL REFERENCE HUB DATA
+// ================================================================
+const LEGAL_HUB = {
+  CA: {
+    label:"Canada", regionLabel:"Province / Territory", flag:"🇨🇦",
+    federal:[
+      { title:"Canadian Human Rights Act", abbr:"CHRA", desc:"Prohibits discrimination in federally regulated housing on grounds including race, national origin, sex, disability, and family status.", url:"https://laws-lois.justice.gc.ca/eng/acts/h-6/", tags:["human-rights"] },
+      { title:"National Housing Strategy Act", abbr:"NHSA", desc:"Establishes the federal commitment to the right to adequate housing and the framework for housing programs administered through CMHC.", url:"https://laws-lois.justice.gc.ca/eng/acts/N-11.2/", tags:["tenancy"] },
+    ],
+    regions:{
+      AB:{ name:"Alberta", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (AB)", desc:"Governs landlord-tenant relationships in Alberta including lease terms, security deposits (capped at 1 month rent), notice periods, and right of entry. Disputes are resolved through the RTDRS.", url:"https://www.qp.alberta.ca/documents/Acts/R17P1.pdf", tags:["tenancy","deposits","eviction"] },
+        { title:"Residential Tenancy Dispute Resolution Service", abbr:"RTDRS", desc:"Administrative tribunal providing a faster alternative to court for resolving landlord-tenant disputes under the Alberta RTA.", url:"https://www.alberta.ca/residential-tenancy-dispute-resolution-service", tags:["eviction"] },
+        { title:"Alberta Human Rights Act", abbr:"AHRA", desc:"Protects Albertans from discrimination in housing on grounds including race, gender, religion, disability, source of income, and family status.", url:"https://www.albertahumanrights.ab.ca/", tags:["human-rights"] },
+      ]},
+      BC:{ name:"British Columbia", laws:[
+        { title:"Residential Tenancy Act", abbr:"RTA (BC)", desc:"BC landlord-tenant legislation covering fixed-term and periodic tenancies, security deposits (max half a month rent), and Residential Tenancy Branch dispute resolution.", url:"https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/02078_01", tags:["tenancy","deposits","eviction"] },
+        { title:"Strata Property Act", abbr:"SPA", desc:"Governs strata (condominium) corporations, bylaws, common property, and the rights of strata lot owners and tenants in BC.", url:"https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/98043_00", tags:["strata"] },
+        { title:"BC Human Rights Code", abbr:"BCHRC", desc:"Prohibits discrimination in residential tenancy on protected grounds including race, sex, disability, sexual orientation, and source of income.", url:"https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/96210_01", tags:["human-rights"] },
+      ]},
+      ON:{ name:"Ontario", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (ON)", desc:"Ontario comprehensive tenancy legislation. Covers rent increases, evictions via the Landlord and Tenant Board, maintenance standards, and security of tenure for most rental units.", url:"https://www.ontario.ca/laws/statute/06r17", tags:["tenancy","eviction","rent-control"] },
+        { title:"Ontario Human Rights Code", abbr:"OHRC", desc:"Protects tenants from discrimination in housing on grounds including race, ancestry, disability, sexual orientation, receipt of public assistance, and family status.", url:"https://www.ontario.ca/laws/statute/90h19", tags:["human-rights"] },
+        { title:"Landlord and Tenant Board", abbr:"LTB", desc:"Ontario tribunal for resolving disputes between landlords and tenants under the RTA, including eviction hearings and rent arrears applications.", url:"https://tribunalsontario.ca/ltb/", tags:["eviction"] },
+      ]},
+      MB:{ name:"Manitoba", laws:[
+        { title:"The Residential Tenancies Act", abbr:"RTA (MB)", desc:"Manitoba landlord-tenant legislation governing lease agreements, rent increases (subject to annual guidelines), repairs, and Residential Tenancies Branch dispute resolution.", url:"https://web2.gov.mb.ca/laws/statutes/ccsm/r119e.php", tags:["tenancy","eviction","rent-control"] },
+        { title:"The Human Rights Code", abbr:"MHC", desc:"Protects Manitobans from discrimination in housing on grounds including ancestry, religion, disability, sex, sexual orientation, and source of income.", url:"https://web2.gov.mb.ca/laws/statutes/ccsm/h175e.php", tags:["human-rights"] },
+      ]},
+      SK:{ name:"Saskatchewan", laws:[
+        { title:"The Residential Tenancies Act, 2006", abbr:"RTA (SK)", desc:"Saskatchewan tenancy legislation covering lease terms, security deposits, landlord entry rights, repairs, and Office of Residential Tenancies dispute resolution.", url:"https://publications.saskatchewan.ca/api/v1/products/23914/formats/31128/download", tags:["tenancy","deposits","eviction"] },
+        { title:"Saskatchewan Human Rights Code, 2018", abbr:"SHRC", desc:"Prohibits discrimination in housing based on protected grounds including disability, religion, sex, sexual orientation, and source of income.", url:"https://www.saskatchewan.ca/residents/justice-crime-and-the-law/human-rights", tags:["human-rights"] },
+      ]},
+      QC:{ name:"Quebec", laws:[
+        { title:"Civil Code of Quebec — Leases", abbr:"CCQ (Leases)", desc:"Articles 1851-1978 of the CCQ govern residential leases in Quebec including mandatory lease forms, rent increases, and Tribunal administratif du logement proceedings.", url:"https://www.legisquebec.gouv.qc.ca/en/document/cs/CCQ-1991", tags:["tenancy","rent-control","eviction"] },
+        { title:"Tribunal administratif du logement", abbr:"TAL", desc:"Quebec housing tribunal handling residential lease disputes, rent increase challenges, and repossession cases.", url:"https://www.tal.gouv.qc.ca/en", tags:["eviction","rent-control"] },
+        { title:"Quebec Charter of Human Rights and Freedoms", abbr:"QC Charter", desc:"Protects Quebec residents from discrimination in housing on grounds including race, disability, sexual orientation, civil status, and social condition.", url:"https://www.legisquebec.gouv.qc.ca/en/document/cs/C-12", tags:["human-rights"] },
+      ]},
+      NS:{ name:"Nova Scotia", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (NS)", desc:"Nova Scotia tenancy legislation covering leases, security deposits (max half a month rent), and Director of Residential Tenancies dispute resolution.", url:"https://nslegislature.ca/sites/default/files/legc/statutes/residential%20tenancies.pdf", tags:["tenancy","deposits","eviction"] },
+        { title:"Nova Scotia Human Rights Act", abbr:"NSHRA", desc:"Prohibits discrimination in the rental of residential property on grounds including race, age, disability, sex, sexual orientation, and source of income.", url:"https://nslegislature.ca/sites/default/files/legc/statutes/human%20rights.pdf", tags:["human-rights"] },
+      ]},
+      NB:{ name:"New Brunswick", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (NB)", desc:"New Brunswick tenancy law governing lease agreements, security deposits, notice to vacate, and Residential Tenancies Tribunal hearings.", url:"https://laws.gnb.ca/en/showdoc/cs/R-10.2", tags:["tenancy","deposits","eviction"] },
+        { title:"New Brunswick Human Rights Act", abbr:"NBHRA", desc:"Protects tenants from discrimination in housing on grounds including race, disability, sex, sexual orientation, and source of income.", url:"https://www.nbhumanrights.ca/", tags:["human-rights"] },
+      ]},
+      NL:{ name:"Newfoundland & Labrador", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (NL)", desc:"NL tenancy legislation covering lease agreements, security deposits, landlord entry rights, and dispute resolution through the Director of Residential Tenancies.", url:"https://www.assembly.nl.ca/legislation/sr/statutes/r14-2.htm", tags:["tenancy","deposits","eviction"] },
+        { title:"NL Human Rights Act", abbr:"NLHRA", desc:"Prohibits discrimination in residential rental on grounds including race, disability, sex, sexual orientation, marital status, and source of income.", url:"https://www.humanrights.nl.ca/", tags:["human-rights"] },
+      ]},
+      PE:{ name:"Prince Edward Island", laws:[
+        { title:"Rental of Residential Property Act", abbr:"RRPA", desc:"PEI tenancy law covering lease terms, security deposits, rent increases, and Island Regulatory and Appeals Commission dispute resolution.", url:"https://www.princeedwardisland.ca/en/legislation/rental-residential-property-act", tags:["tenancy","deposits","eviction","rent-control"] },
+        { title:"PEI Human Rights Act", abbr:"PEIHRA", desc:"Protects tenants from discrimination in housing on grounds including race, disability, sex, sexual orientation, source of income, and family status.", url:"https://www.peihumanrights.ca/", tags:["human-rights"] },
+      ]},
+      YT:{ name:"Yukon", laws:[
+        { title:"Residential Landlord and Tenant Act", abbr:"RLTA (YT)", desc:"Yukon tenancy legislation governing landlord-tenant rights, security deposits, notice periods, and Residential Tenancies Office dispute resolution.", url:"https://legislation.yukon.ca/acts/rlta_c.pdf", tags:["tenancy","deposits","eviction"] },
+        { title:"Yukon Human Rights Act", abbr:"YHRA", desc:"Prohibits discrimination in housing on grounds including race, disability, sex, sexual orientation, family status, and source of income.", url:"https://yukonhumanrights.ca/", tags:["human-rights"] },
+      ]},
+      NT:{ name:"Northwest Territories", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (NT)", desc:"NWT tenancy law covering lease agreements, security deposits, landlord entry, repairs, and Rental Office dispute resolution for residential rental units.", url:"https://www.justice.gov.nt.ca/en/files/legislation/residential-tenancies/residential-tenancies.a.pdf", tags:["tenancy","deposits","eviction"] },
+      ]},
+      NU:{ name:"Nunavut", laws:[
+        { title:"Residential Tenancies Act", abbr:"RTA (NU)", desc:"Nunavut residential tenancy legislation governing landlord-tenant rights and responsibilities, administered by the Rental Office.", url:"https://www.nunavutlegislation.ca/en/consolidations/residential-tenancies-act-rsnwt-nu-1988-c-r-5", tags:["tenancy","deposits","eviction"] },
+      ]},
+    }
+  },
+  US: {
+    label:"United States", regionLabel:"State", flag:"🇺🇸",
+    federal:[
+      { title:"Fair Housing Act", abbr:"FHA", desc:"Prohibits discrimination in housing sales, rentals, and financing on the basis of race, color, national origin, religion, sex, disability, and familial status.", url:"https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview", tags:["human-rights"] },
+      { title:"Americans with Disabilities Act", abbr:"ADA", desc:"Requires reasonable accommodations in housing for people with disabilities, including modifications to rental units and common areas.", url:"https://www.ada.gov/", tags:["human-rights","maintenance"] },
+      { title:"Lead Disclosure Rule (Pre-1978 Housing)", abbr:"Lead Disclosure", desc:"Requires landlords of pre-1978 housing to disclose known lead-based paint hazards and provide EPA-approved pamphlets to prospective tenants.", url:"https://www.epa.gov/lead/real-estate-disclosure", tags:["maintenance"] },
+    ],
+    regions:{
+      AL:{ name:"Alabama", laws:[
+        { title:"Alabama Uniform Residential Landlord and Tenant Act", abbr:"AURLTA", desc:"Covers lease agreements, landlord duties, tenant rights, security deposits, and eviction procedures.", url:"https://law.justia.com/codes/alabama/title-35/chapter-9a/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      AK:{ name:"Alaska", laws:[
+        { title:"Alaska Uniform Residential Landlord and Tenant Act", abbr:"AURLTA (AK)", desc:"Governs lease terms, security deposits (max 2 months rent), habitability standards, and eviction process.", url:"https://law.justia.com/codes/alaska/title-34/chapter-34.03/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      AZ:{ name:"Arizona", laws:[
+        { title:"Arizona Residential Landlord and Tenant Act", abbr:"ARLTA", desc:"Covers lease terms, security deposits (max 1.5 months rent), notice requirements, and Special Detainer eviction process.", url:"https://www.azleg.gov/arstitle/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      AR:{ name:"Arkansas", laws:[
+        { title:"Arkansas Residential Landlord-Tenant Act of 2007", abbr:"ARLTA (AR)", desc:"Covers landlord duties, tenant rights, security deposits, and unlawful detainer eviction procedures.", url:"https://law.justia.com/codes/arkansas/title-18/subtitle-2/chapter-17/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      CA:{ name:"California", laws:[
+        { title:"California Civil Code — Residential Tenancies", abbr:"CA Civil Code §1940", desc:"California tenancy law covering habitability, security deposits (max 1 month rent for unfurnished), and just-cause eviction requirements.", url:"https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1940.&lawCode=CIV", tags:["tenancy","deposits","eviction","maintenance"] },
+        { title:"California Tenant Protection Act of 2019", abbr:"AB 1482", desc:"Provides statewide rent increase caps (5% + CPI, max 10%) and just-cause eviction protections for qualifying units built before 2005.", url:"https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201920200AB1482", tags:["rent-control","eviction"] },
+      ]},
+      CO:{ name:"Colorado", laws:[
+        { title:"Colorado Landlord-Tenant Law", abbr:"CRS Title 38", desc:"Covers lease agreements, security deposits (returned within 30 days), habitability, and Unlawful Detainer eviction process.", url:"https://leg.colorado.gov/agencies/office-legislative-legal-services/colorado-revised-statutes", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      CT:{ name:"Connecticut", laws:[
+        { title:"Connecticut Landlord-Tenant Act", abbr:"CGS Ch. 830", desc:"Governs residential leases, security deposits (max 2 months rent), landlord entry, and summary process eviction.", url:"https://www.cga.ct.gov/current/pub/title_47a.htm", tags:["tenancy","deposits","eviction"] },
+      ]},
+      DE:{ name:"Delaware", laws:[
+        { title:"Delaware Residential Landlord-Tenant Code", abbr:"DE Title 25", desc:"Covers lease requirements, security deposits (max 1 month rent for leases over 1 year), repairs, and Rent Justification Act compliance.", url:"https://delcode.delaware.gov/title25/c051/index.html", tags:["tenancy","deposits","eviction","rent-control"] },
+      ]},
+      FL:{ name:"Florida", laws:[
+        { title:"Florida Residential Landlord and Tenant Act", abbr:"FRLTA", desc:"Governs lease terms, security deposits, 3-day and 7-day notice requirements, and county court eviction process.", url:"https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0083/0083.html", tags:["tenancy","deposits","eviction"] },
+      ]},
+      GA:{ name:"Georgia", laws:[
+        { title:"Georgia Landlord-Tenant Act", abbr:"OCGA Title 44", desc:"Covers lease agreements, security deposits (written notice required), landlord entry, and dispossessory eviction process.", url:"https://law.justia.com/codes/georgia/title-44/chapter-7/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      HI:{ name:"Hawaii", laws:[
+        { title:"Hawaii Residential Landlord-Tenant Code", abbr:"HRS Ch. 521", desc:"Governs lease terms, security deposits (max 1 month rent), habitability, and summary possession eviction.", url:"https://www.capitol.hawaii.gov/hrscurrent/Vol12_Ch0501-0588/HRS0521/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      ID:{ name:"Idaho", laws:[
+        { title:"Idaho Residential Landlord and Tenant Act", abbr:"Idaho Title 6", desc:"Covers lease agreements, landlord duties, tenant rights, security deposits, and unlawful detainer eviction through district court.", url:"https://legislature.idaho.gov/statutesrules/idstat/title6/t6ch3/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      IL:{ name:"Illinois", laws:[
+        { title:"Illinois Landlord and Tenant Act", abbr:"765 ILCS 710", desc:"Covers landlord disclosure duties, security deposit interest requirements, and remedies for habitability violations.", url:"https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=2102&ChapterID=62", tags:["tenancy","deposits","maintenance"] },
+        { title:"Chicago Residential Landlord and Tenant Ordinance", abbr:"RLTO", desc:"Chicago ordinance providing additional tenant protections including security deposit interest, right to repair, and retaliation protections.", url:"https://www.chicago.gov/city/en/depts/doh/provdrs/landlords/svcs/residential-landlord-and-tenant-ordinance.html", tags:["tenancy","deposits","maintenance","rent-control"] },
+      ]},
+      IN:{ name:"Indiana", laws:[
+        { title:"Indiana Landlord-Tenant Relations", abbr:"IC 32-31", desc:"Governs lease agreements, security deposits (returned within 45 days), landlord entry rights, and eviction process.", url:"https://iga.in.gov/laws/2023/ic/titles/32#32-31", tags:["tenancy","deposits","eviction"] },
+      ]},
+      IA:{ name:"Iowa", laws:[
+        { title:"Iowa Uniform Residential Landlord and Tenant Act", abbr:"Iowa Ch. 562A", desc:"Covers security deposits (max 2 months rent), landlord duties, habitability standards, and Forcible Entry and Detainer eviction.", url:"https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=562A&session=90", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      KS:{ name:"Kansas", laws:[
+        { title:"Kansas Residential Landlord and Tenant Act", abbr:"KRLTA", desc:"Covers lease agreements, security deposits (max 1.5 months rent), landlord maintenance duties, and Forcible Detainer eviction process.", url:"https://kslegislature.org/li/b2023_24/statute/058_000_0000_chapter/058_025_0000_article/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      KY:{ name:"Kentucky", laws:[
+        { title:"Kentucky Uniform Residential Landlord and Tenant Act", abbr:"KURLTA", desc:"Applies in counties that have adopted it; covers security deposits, habitability, and Detainer Warrant eviction. Non-adopting counties follow common law.", url:"https://apps.legislature.ky.gov/law/statutes/chapter.aspx?id=39081", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      LA:{ name:"Louisiana", laws:[
+        { title:"Louisiana Revised Statutes — Residential Leases", abbr:"LRS 9:3251", desc:"Covers residential leases, security deposit return (30 days), landlord duties, and eviction (Rule to Show Cause) process.", url:"https://legis.la.gov/legis/Law.aspx?d=109412", tags:["tenancy","deposits","eviction"] },
+      ]},
+      ME:{ name:"Maine", laws:[
+        { title:"Maine Residential Landlord-Tenant Act", abbr:"Maine Title 14", desc:"Covers lease terms, security deposits (max 2 months rent), landlord entry, habitability, and Forcible Entry and Detainer eviction.", url:"https://legislature.maine.gov/statutes/14/title14ch709.pdf", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      MD:{ name:"Maryland", laws:[
+        { title:"Maryland Landlord-Tenant Law", abbr:"MD Real Property Code", desc:"Covers security deposits (max 2 months rent), habitability, notice requirements, and summary ejectment eviction process.", url:"https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=grp&section=8-101", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      MA:{ name:"Massachusetts", laws:[
+        { title:"Massachusetts Landlord-Tenant Law", abbr:"MGL Ch. 186", desc:"Covers notice to quit, habitability standards, summary process eviction, and just-cause protections for tenants-at-will.", url:"https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186", tags:["tenancy","eviction","maintenance"] },
+        { title:"Massachusetts Security Deposit Law", abbr:"Ch. 186 §15B", desc:"Requires security deposits be placed in escrow, interest paid annually, and returned with itemized statement within 30 days of tenancy end.", url:"https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B", tags:["deposits"] },
+      ]},
+      MI:{ name:"Michigan", laws:[
+        { title:"Michigan Landlord and Tenant Relationships Act", abbr:"MI Act 348", desc:"Covers lease agreements, security deposits (max 1.5 months rent), landlord duties, and Summary Proceedings eviction process.", url:"https://www.legislature.mi.gov/mileg.aspx?page=getObject&objectName=mcl-Act-348-of-1972", tags:["tenancy","deposits","eviction"] },
+      ]},
+      MN:{ name:"Minnesota", laws:[
+        { title:"Minnesota Residential Landlord and Tenant Act", abbr:"MN Stat. Ch. 504B", desc:"Covers security deposits, habitability covenants, landlord entry, retaliation protections, and Unlawful Detainer eviction.", url:"https://www.revisor.mn.gov/statutes/cite/504B", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      MS:{ name:"Mississippi", laws:[
+        { title:"Mississippi Landlord-Tenant Act", abbr:"MS Code §89-8", desc:"Covers landlord disclosure duties, security deposits, habitability standards, and unlawful detainer eviction through justice court.", url:"https://law.justia.com/codes/mississippi/title-89/chapter-8/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      MO:{ name:"Missouri", laws:[
+        { title:"Missouri Landlord-Tenant Law", abbr:"MO Rev. Stat. §441", desc:"Covers lease agreements, security deposits (max 2 months rent, returned within 30 days), and unlawful detainer eviction process.", url:"https://revisor.mo.gov/main/OneChapter.aspx?chapter=441", tags:["tenancy","deposits","eviction"] },
+      ]},
+      MT:{ name:"Montana", laws:[
+        { title:"Montana Residential Landlord and Tenant Act", abbr:"MRLTA", desc:"Covers lease terms, security deposits (max 3 months rent), landlord entry, habitability, and Unlawful Detainer eviction.", url:"https://leg.mt.gov/bills/mca/title_0700/chapter_0250/parts_index.html", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      NE:{ name:"Nebraska", laws:[
+        { title:"Nebraska Landlord-Tenant Act", abbr:"NLTA", desc:"Covers security deposits (max 1 month rent), landlord access rights, habitability duties, and Forcible Entry and Detainer eviction.", url:"https://nebraskalegislature.gov/laws/statutes.php?statute=76-1401", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      NV:{ name:"Nevada", laws:[
+        { title:"Nevada Landlord and Tenant Law", abbr:"NRS Ch. 118A", desc:"Covers security deposits (max 3 months rent), habitability, notice periods, and summary eviction process through justice court.", url:"https://www.leg.state.nv.us/NRS/NRS-118A.html", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      NH:{ name:"New Hampshire", laws:[
+        { title:"New Hampshire Landlord and Tenant Act", abbr:"RSA 540 / 540-A", desc:"Covers lease terms, security deposits, prohibited landlord conduct (lockouts/utility shutoffs), and eviction process.", url:"https://www.gencourt.state.nh.us/rsa/html/LV/540/540-mrg.htm", tags:["tenancy","deposits","eviction"] },
+      ]},
+      NJ:{ name:"New Jersey", laws:[
+        { title:"New Jersey Anti-Eviction Act", abbr:"NJAEA", desc:"Provides strong eviction protections requiring just cause including nonpayment, lease violations, or building conversion. One of the strongest tenant protection laws in the US.", url:"https://law.justia.com/codes/new-jersey/title-2a/section-2a-18-61.1/", tags:["eviction","rent-control"] },
+        { title:"New Jersey Truth in Renting Act", abbr:"NJTRA", desc:"Requires landlords to provide tenants with a plain-language statement of their rights and responsibilities covering deposits, notice, and habitability.", url:"https://www.njconsumeraffairs.gov/regulated/Pages/Landlord-Tenant-Information.aspx", tags:["tenancy","deposits","maintenance"] },
+      ]},
+      NM:{ name:"New Mexico", laws:[
+        { title:"New Mexico Uniform Owner-Resident Relations Act", abbr:"NMORRA", desc:"Covers security deposits (max 1 month rent), habitability, landlord entry, and Petition for Restitution eviction process.", url:"https://nmonesource.com/nmos/nmsa/en/item/4378/index.do", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      NY:{ name:"New York", laws:[
+        { title:"Housing Stability and Tenant Protection Act of 2019", abbr:"HSTPA", desc:"Landmark law strengthening rent stabilization, capping security deposits at 1 month rent, eliminating vacancy decontrol, and expanding just-cause eviction protections.", url:"https://www.nysenate.gov/legislation/bills/2019/S6458", tags:["rent-control","deposits","eviction"] },
+        { title:"New York Real Property Law", abbr:"NY RPL", desc:"Foundational tenancy statute covering lease requirements, warranty of habitability, landlord obligations, and summary proceeding eviction.", url:"https://www.nysenate.gov/legislation/laws/RPP", tags:["tenancy","maintenance","eviction"] },
+      ]},
+      NC:{ name:"North Carolina", laws:[
+        { title:"North Carolina Residential Rental Agreements Act", abbr:"NCRRAA", desc:"Covers security deposits (max 1.5-2 months rent), landlord duties, habitability, and Summary Ejectment eviction process in district court.", url:"https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_42/Article_5.html", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      ND:{ name:"North Dakota", laws:[
+        { title:"North Dakota Century Code — Landlord-Tenant", abbr:"NDCC Ch. 47-16", desc:"Covers lease agreements, security deposits (max 1 month rent), landlord duties, and Forcible Entry and Detainer eviction.", url:"https://www.legis.nd.gov/cencode/t47c16.pdf", tags:["tenancy","deposits","eviction"] },
+      ]},
+      OH:{ name:"Ohio", laws:[
+        { title:"Ohio Landlord-Tenant Act", abbr:"Ohio Rev. Code §5321", desc:"Covers security deposits, landlord duties, tenant remedies for habitability violations, and Forcible Entry and Detainer eviction.", url:"https://codes.ohio.gov/ohio-revised-code/chapter-5321", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      OK:{ name:"Oklahoma", laws:[
+        { title:"Oklahoma Residential Landlord and Tenant Act", abbr:"ORLTA", desc:"Covers security deposits (max 1 month rent), landlord entry rights, habitability duties, and Forcible Entry and Detainer eviction.", url:"https://oksenate.gov/sites/default/files/2019-12/os41.pdf", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      OR:{ name:"Oregon", laws:[
+        { title:"Oregon Residential Landlord and Tenant Act", abbr:"ORLTA (OR)", desc:"Oregon comprehensive tenancy law including the first US statewide rent control (7% + CPI cap), no-cause eviction restrictions, and strong habitability protections.", url:"https://oregon.public.law/statutes/ors_90.100", tags:["tenancy","deposits","eviction","rent-control","maintenance"] },
+      ]},
+      PA:{ name:"Pennsylvania", laws:[
+        { title:"Pennsylvania Landlord and Tenant Act of 1951", abbr:"PA LTA", desc:"Covers security deposits (max 2 months first year, 1 month thereafter), landlord duties, and Magisterial District Judge eviction process.", url:"https://www.legis.state.pa.us/WU01/LI/LI/US/HTM/1951/0/0020..HTM", tags:["tenancy","deposits","eviction"] },
+      ]},
+      RI:{ name:"Rhode Island", laws:[
+        { title:"Rhode Island Residential Landlord and Tenant Act", abbr:"RI Gen. Laws §34-18", desc:"Covers security deposits (max 1 month rent), habitability standards, landlord entry rights, and District Court eviction.", url:"https://webserver.rilegislature.gov/Statutes/TITLE34/34-18/INDEX.htm", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      SC:{ name:"South Carolina", laws:[
+        { title:"South Carolina Residential Landlord and Tenant Act", abbr:"SCRLTA", desc:"Covers security deposits, landlord habitability duties, tenant remedies, and eviction (Rule to Vacate) process in magistrate court.", url:"https://www.scstatehouse.gov/code/t27c040.php", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      SD:{ name:"South Dakota", laws:[
+        { title:"South Dakota Landlord-Tenant Law", abbr:"SDCL Title 43", desc:"Covers lease agreements, security deposits (max 1 month rent), landlord duties, and Forcible Entry and Detainer eviction process.", url:"https://sdlegislature.gov/Statutes/Codified_Laws/DisplayStatute.aspx?Type=Statute&Statute=43-32", tags:["tenancy","deposits","eviction"] },
+      ]},
+      TN:{ name:"Tennessee", laws:[
+        { title:"Tennessee Uniform Residential Landlord and Tenant Act", abbr:"TURLTA", desc:"Applies to larger landlords (4+ units) in counties over 75,000 population. Covers security deposits, habitability, and Detainer Warrant eviction.", url:"https://law.justia.com/codes/tennessee/title-66/chapter-28/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      TX:{ name:"Texas", laws:[
+        { title:"Texas Property Code — Landlord-Tenant", abbr:"TX Prop. Code Ch. 92", desc:"Covers security deposits (returned within 30 days), landlord repair duties, right of access, retaliation protections, and Justice of the Peace Forcible Detainer eviction.", url:"https://statutes.capitol.texas.gov/Docs/PR/htm/PR.92.htm", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      UT:{ name:"Utah", laws:[
+        { title:"Utah Fit Premises Act", abbr:"UT Code §57-22", desc:"Requires landlords to maintain rental units in fit condition and provides tenant remedies for landlord failure to repair within a reasonable time.", url:"https://le.utah.gov/xcode/Title57/Chapter22/57-22.html", tags:["maintenance","tenancy"] },
+        { title:"Utah Unlawful Detainer Statute", abbr:"UT Code §78B-6", desc:"Governs the eviction process including 3-day to 15-day notice periods depending on cause, and District Court proceedings.", url:"https://le.utah.gov/xcode/Title78B/Chapter6/78B-6-S801.html", tags:["eviction"] },
+      ]},
+      VT:{ name:"Vermont", laws:[
+        { title:"Vermont Residential Rental Agreements Act", abbr:"VT 9 V.S.A. §4451", desc:"Covers habitability warranties, security deposits (max 1 month rent), notice to vacate, and Writ of Possession eviction in Superior Court.", url:"https://legislature.vermont.gov/statutes/chapter/09/137", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      VA:{ name:"Virginia", laws:[
+        { title:"Virginia Residential Landlord and Tenant Act", abbr:"VRLTA", desc:"Covers security deposits (max 2 months rent), landlord maintenance duties, tenant remedies, and Unlawful Detainer eviction process.", url:"https://law.lis.virginia.gov/vacode/title55.1/chapter12/", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      WA:{ name:"Washington", laws:[
+        { title:"Washington Residential Landlord-Tenant Act", abbr:"WRLTA", desc:"Covers security deposits, habitability, landlord entry, and Unlawful Detainer eviction. 2021 amendments added stronger just-cause eviction protections.", url:"https://app.leg.wa.gov/rcw/default.aspx?cite=59.18", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      WV:{ name:"West Virginia", laws:[
+        { title:"West Virginia Landlord-Tenant Act", abbr:"WV Code §37-6", desc:"Covers lease agreements, landlord duties, security deposit handling, and Magistrate Court eviction process.", url:"https://code.wvlegislature.gov/37-6/", tags:["tenancy","deposits","eviction"] },
+      ]},
+      WI:{ name:"Wisconsin", laws:[
+        { title:"Wisconsin Residential Tenancy Law", abbr:"WI Stat. Ch. 704", desc:"Covers security deposits, written lease requirements, landlord disclosure duties, habitability, and Eviction Action process.", url:"https://docs.legis.wisconsin.gov/statutes/statutes/704", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      WY:{ name:"Wyoming", laws:[
+        { title:"Wyoming Residential Rental Property Act", abbr:"WY Stat. §1-21-1201", desc:"Covers lease agreements, security deposits (returned within 30 days), landlord habitability duties, and eviction through circuit court.", url:"https://wyoleg.gov/statutes/compress/title01.pdf", tags:["tenancy","deposits","eviction","maintenance"] },
+      ]},
+      DC:{ name:"Washington D.C.", laws:[
+        { title:"D.C. Rental Housing Act of 1985", abbr:"DC RHA", desc:"Comprehensive rent control and tenant protection law covering rent ceilings, just-cause eviction protections, and tenant organization rights for most rental units.", url:"https://code.dccouncil.gov/us/dc/council/code/titles/42/chapters/35/", tags:["rent-control","eviction","tenancy"] },
+        { title:"D.C. Landlord-Tenant Regulations", abbr:"14 DCMR Ch. 3", desc:"Detailed regulations governing security deposits, habitability standards, landlord entry rights, and eviction notice requirements.", url:"https://www.dcregs.dc.gov/", tags:["tenancy","deposits","maintenance"] },
+      ]},
+    }
+  }
+};
+
+// ================================================================
 //  APP STATE & CONTROLLER
 // ================================================================
 const App = {
@@ -850,6 +1089,8 @@ const App = {
     adminTab: 'courses',
     resourceFilter: 'all',
     currentResource: null,
+    legalCountry: null,
+    legalRegion: '',
     showChatbot: false,
     chatbotStep: 0,
     chatbotProfile: null,
@@ -1075,6 +1316,7 @@ const App = {
       case 'profile': h+=this.renderProfile(); break;
       case 'payment': h+=this.renderPayment(); break;
       case 'admin': h+=this.renderAdmin(); break;
+      case 'legal-hub': h+=this.renderLegalHub(); break;
       default: h+=this.renderHome();
     }
     if(!['course-view','quiz'].includes(this.state.page)) h+=this.renderFooter();
@@ -1094,6 +1336,7 @@ const App = {
         <button class="nav-link ${this.state.page==='get-started'?'active':''}" onclick="App.go('get-started')">Become a PM</button>
         <button class="nav-link ${this.state.page==='courses'?'active':''}" onclick="App.go('courses')">Courses</button>
         <button class="nav-link ${this.state.page==='resources'?'active':''}" onclick="App.go('resources')">Free Resources</button>
+        <button class="nav-link ${this.state.page==='legal-hub'?'active':''}" onclick="App.go('legal-hub')">Legal Hub</button>
         ${u?`<button class="nav-link ${this.state.page==='dashboard'?'active':''}" onclick="App.go('dashboard')">Dashboard</button>
         <button class="nav-link ${this.state.page==='my-courses'?'active':''}" onclick="App.go('my-courses')">My Courses</button>`:''}
         ${u&&u.role==='admin'?`<button class="nav-link ${this.state.page==='admin'?'active':''}" onclick="App.go('admin')">Admin</button>`:''}
@@ -2133,6 +2376,96 @@ const App = {
         this.state.showNotifPanel = false; this.render();
       }
     });
+  },
+
+  renderLegalHub(){
+    const cntry = this.state.legalCountry;
+    const region = this.state.legalRegion;
+    const tagColors = {tenancy:'#64A5AD',deposits:'#f0a32e',eviction:'#ef4444',maintenance:'#22c55e','human-rights':'#a78bfa','rent-control':'#38bdf8',strata:'#818cf8'};
+
+    const renderLaw = (law, accent) => {
+      const pills = law.tags.map(t=>`<span style="display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;background:${(tagColors[t]||'#999')}22;color:${tagColors[t]||'#999'};border:1px solid ${(tagColors[t]||'#999')}44;margin:2px 4px 2px 0">${t}</span>`).join('');
+      return `<div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;border-left:4px solid ${accent};padding:24px;margin-bottom:14px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+              <h3 style="font-size:15px;font-weight:700;color:#1a1a1a;margin:0">${law.title}</h3>
+              <span style="background:#f3f4f6;color:#666;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0">${law.abbr}</span>
+            </div>
+            <p style="font-size:14px;color:#555;line-height:1.6;margin:0 0 10px">${law.desc}</p>
+            <div>${pills}</div>
+          </div>
+          <a href="${law.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#3C595D;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:4px">
+            View Act <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>`;
+    };
+
+    // Country selector
+    const countryBtns = Object.entries(LEGAL_HUB).map(([code,data])=>`<button onclick="App.state.legalCountry='${code}';App.state.legalRegion='';App.render()" style="flex:1;padding:14px 20px;border-radius:10px;border:2px solid ${cntry===code?'#64A5AD':'rgba(0,0,0,0.1)'};background:${cntry===code?'#eaf6f7':'#fff'};cursor:pointer;font-size:15px;font-weight:600;color:${cntry===code?'#3C595D':'#555'};transition:all .2s">${data.flag} ${data.label}</button>`).join('');
+
+    // Region dropdown
+    let regionDropdown = '';
+    if(cntry){
+      const cd = LEGAL_HUB[cntry];
+      const opts = Object.entries(cd.regions).sort((a,b)=>a[1].name.localeCompare(b[1].name)).map(([code,r])=>`<option value="${code}" ${region===code?'selected':''}>${r.name}</option>`).join('');
+      regionDropdown = `<div style="margin-top:20px">
+        <label style="display:block;font-size:13px;font-weight:600;color:#555;margin-bottom:6px">${cd.regionLabel}</label>
+        <select onchange="App.state.legalRegion=this.value;App.render()" style="width:100%;padding:12px 16px;border-radius:8px;border:1.5px solid #ddd;font-size:15px;color:#333;background:#fff;cursor:pointer;appearance:auto">
+          <option value="">Select ${cd.regionLabel}...</option>${opts}
+        </select>
+      </div>`;
+    }
+
+    // Results
+    let results = '';
+    if(cntry && region){
+      const cd = LEGAL_HUB[cntry];
+      const rd = cd.regions[region];
+      results = `<div style="max-width:900px;margin:0 auto;padding:0 20px 60px">
+        <h2 style="font-size:21px;font-weight:700;color:#1a1a1a;margin-bottom:4px">${rd.name} — Landlord-Tenant Laws</h2>
+        <p style="color:#888;font-size:13px;margin-bottom:24px">${rd.laws.length} regional law${rd.laws.length!==1?'s':''} + ${cd.federal.length} federal law${cd.federal.length!==1?'s':''}</p>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#3C595D;margin-bottom:12px">Regional Laws</div>
+        ${rd.laws.map(l=>renderLaw(l,'#64A5AD')).join('')}
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6366f1;margin:28px 0 12px">Federal Laws</div>
+        ${cd.federal.map(l=>renderLaw(l,'#6366f1')).join('')}
+        <div style="background:#fff8e6;border:1px solid #f0a32e55;border-left:4px solid #f0a32e;border-radius:10px;padding:16px 20px;margin-top:32px">
+          <p style="font-size:13px;color:#7a5500;margin:0;line-height:1.6"><strong>Disclaimer:</strong> This page links to official legislation and government resources. Laws change — always verify with the current official source or consult a qualified legal professional before making tenancy decisions.</p>
+        </div>
+      </div>`;
+    } else if(cntry){
+      results = `<div style="text-align:center;padding:48px 20px;color:#aaa">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p style="font-size:16px;font-weight:600;color:#555;margin-bottom:6px">Choose a ${LEGAL_HUB[cntry].regionLabel}</p>
+        <p style="font-size:14px">Select your ${LEGAL_HUB[cntry].regionLabel.toLowerCase()} above to view applicable laws</p>
+      </div>`;
+    } else {
+      results = `<div style="text-align:center;padding:48px 20px;color:#aaa">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:14px;display:block;margin-left:auto;margin-right:auto"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>
+        <p style="font-size:16px;font-weight:600;color:#555;margin-bottom:6px">Select your country to get started</p>
+        <p style="font-size:14px">Choose Canada or the United States, then pick your province or state</p>
+      </div>`;
+    }
+
+    return `
+      <div style="background:linear-gradient(135deg,#0e2a3d 0%,#193845 50%,#1d4140 100%);padding:80px 0 56px">
+        <div class="container" style="padding-top:0;padding-bottom:0;text-align:center">
+          <div style="display:inline-block;background:rgba(100,165,173,0.18);border:1px solid rgba(100,165,173,0.35);color:#80c8cf;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:18px">Property Manager Resource</div>
+          <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.02em">Legal Reference Hub</h1>
+          <div style="width:56px;height:4px;background:linear-gradient(90deg,#64A5AD,#2e6db4);border-radius:2px;margin:0 auto 20px"></div>
+          <p style="color:rgba(255,255,255,0.6);font-size:17px;max-width:580px;margin:0 auto;line-height:1.6">Select your country and region to instantly access the landlord-tenant laws and housing acts that apply to you.</p>
+        </div>
+      </div>
+      <div style="background:#f4f6f8;min-height:60vh">
+        <div style="max-width:700px;margin:0 auto;padding:0 20px">
+          <div style="background:#fff;border-radius:16px;box-shadow:0 4px 28px rgba(0,0,0,0.09);padding:32px;margin-top:-32px;position:relative;z-index:10">
+            <div style="display:flex;gap:12px">${countryBtns}</div>
+            ${regionDropdown}
+          </div>
+        </div>
+        <div style="margin-top:40px">${results}</div>
+      </div>`;
   },
 
   init(){
