@@ -279,7 +279,7 @@
     .resource-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 
     /* KRU PLATFORM LINK */
-    .nav-kru-link{padding:8px 16px;border-radius:var(--radius-full);font-weight:600;font-size:13px;cursor:pointer;transition:var(--tr);background:var(--primary);color:#fff!important;text-decoration:none!important;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+    .nav-kru-link{padding:8px 16px;border-radius:var(--radius-full);font-weight:600;font-size:13px;cursor:pointer;transition:var(--tr);background:var(--primary);color:#fff!important;text-decoration:none!important;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;margin-left:16px}
     .nav-kru-link:hover{background:var(--primary-light);transform:translateY(-1px)}
     .nav-legal-link{padding:7px 16px;border-radius:var(--radius-full);font-weight:600;font-size:14px;cursor:pointer;transition:var(--tr);background:transparent;color:rgba(128,200,207,0.9)!important;border:1.5px solid rgba(100,165,173,0.45);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
     .nav-legal-link:hover,.nav-legal-link.active{background:rgba(100,165,173,0.15);border-color:#64A5AD;color:#80c8cf!important;transform:translateY(-1px)}
@@ -1342,7 +1342,7 @@ const App = {
         ${u?`<button class="nav-link ${this.state.page==='dashboard'?'active':''}" onclick="App.go('dashboard')">Dashboard</button>
         <button class="nav-link ${this.state.page==='my-courses'?'active':''}" onclick="App.go('my-courses')">My Courses</button>`:''}
         ${u&&u.role==='admin'?`<button class="nav-link ${this.state.page==='admin'?'active':''}" onclick="App.go('admin')">Admin</button>`:''}
-        <a href="https://mykru.ca" target="_blank" rel="noopener" class="nav-kru-link" title="Discover Kru — Streamline your property maintenance">&#9889; Kru Maintenance Platform</a>
+        <a href="https://mykru.ca" target="_blank" rel="noopener" class="nav-kru-link" title="Discover Kru — Streamline your property maintenance"><img src="krulogoblack.png" alt="Kru" style="height:15px;object-fit:contain;filter:brightness(0) invert(1)"> Maintenance Platform</a>
       </div>
       <div class="nav-right">
         ${u?`<button class="notif-btn" onclick="App.state.showNotifPanel=!App.state.showNotifPanel;App.render()">&#128276;${uc>0?`<span class="notif-badge">${uc>9?'9+':uc}</span>`:''}</button>
