@@ -281,6 +281,8 @@
     /* KRU PLATFORM LINK */
     .nav-kru-link{padding:8px 16px;border-radius:var(--radius-full);font-weight:600;font-size:13px;cursor:pointer;transition:var(--tr);background:var(--primary);color:#fff!important;text-decoration:none!important;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
     .nav-kru-link:hover{background:var(--primary-light);transform:translateY(-1px)}
+    .nav-legal-link{padding:7px 16px;border-radius:var(--radius-full);font-weight:600;font-size:14px;cursor:pointer;transition:var(--tr);background:transparent;color:rgba(128,200,207,0.9)!important;border:1.5px solid rgba(100,165,173,0.45);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+    .nav-legal-link:hover,.nav-legal-link.active{background:rgba(100,165,173,0.15);border-color:#64A5AD;color:#80c8cf!important;transform:translateY(-1px)}
 
     /* GET STARTED / PROSPECTIVE PM PAGE */
     .gs-hero{background:var(--dark);color:#fff;padding:100px 24px 70px;text-align:center;position:relative;overflow:hidden}
@@ -1336,7 +1338,7 @@ const App = {
         <button class="nav-link ${this.state.page==='get-started'?'active':''}" onclick="App.go('get-started')">Become a PM</button>
         <button class="nav-link ${this.state.page==='courses'?'active':''}" onclick="App.go('courses')">Courses</button>
         <button class="nav-link ${this.state.page==='resources'?'active':''}" onclick="App.go('resources')">Free Resources</button>
-        <button class="nav-link ${this.state.page==='legal-hub'?'active':''}" onclick="App.go('legal-hub')">Legal Hub</button>
+        <button class="nav-legal-link ${this.state.page==='legal-hub'?'active':''}" onclick="App.go('legal-hub')">⚖️ Legal Hub</button>
         ${u?`<button class="nav-link ${this.state.page==='dashboard'?'active':''}" onclick="App.go('dashboard')">Dashboard</button>
         <button class="nav-link ${this.state.page==='my-courses'?'active':''}" onclick="App.go('my-courses')">My Courses</button>`:''}
         ${u&&u.role==='admin'?`<button class="nav-link ${this.state.page==='admin'?'active':''}" onclick="App.go('admin')">Admin</button>`:''}
