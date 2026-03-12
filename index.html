@@ -1331,7 +1331,7 @@ const App = {
   renderNav(){
     const u=this.state.user, uc=this.unreadCount();
     return `<nav class="navbar">
-      <div class="nav-logo" onclick="App.go('home')"><img src="pmaemblem.png" alt="PMA" style="width:36px;height:36px;border-radius:8px;object-fit:contain"><span class="nav-logo-text">Property Manager <em>Academy</em></span></div>
+      <div class="nav-logo" onclick="App.go('home')"><img src="pmaemblem.png" alt="PMA" style="width:36px;height:36px;border-radius:8px;object-fit:contain"><div class="nav-logo-text" style="display:flex;flex-direction:column;line-height:1.2"><span>Property Manager <em>Academy</em></span><span style="font-size:10px;font-weight:400;color:rgba(255,255,255,0.42);letter-spacing:0.4px;margin-top:1px">A Boardwise Service</span></div></div>
       <button class="mobile-toggle" onclick="App.state.mobileNav=!App.state.mobileNav;App.render()">&#9776;</button>
       <div class="nav-links ${this.state.mobileNav?'show':''}">
         <button class="nav-link ${this.state.page==='home'?'active':''}" onclick="App.go('home')">Home</button>
