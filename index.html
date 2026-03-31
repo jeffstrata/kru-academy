@@ -3757,20 +3757,36 @@ const App = {
   },
 
   // EBOOK LEAD CAPTURE
+  ebookUpdateProvinces(){
+    const country = document.getElementById('ebook-country').value;
+    const sel = document.getElementById('ebook-region');
+    const ca = ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon'];
+    const us = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+    const list = country==='CA' ? ca : country==='US' ? us : [];
+    const label = country==='CA' ? 'Province' : country==='US' ? 'State' : 'Province / State';
+    sel.innerHTML = '<option value="">'+label+' (optional)</option>' + list.map(r=>`<option value="${r}">${r}</option>`).join('');
+  },
+
   submitEbook(){
-    const name = document.getElementById('ebook-name').value.trim();
-    const email = document.getElementById('ebook-email').value.trim();
-    if(!name){ App.toast('Please enter your first name','error'); return; }
+    const firstName = document.getElementById('ebook-fname').value.trim();
+    const lastName  = document.getElementById('ebook-lname').value.trim();
+    const email     = document.getElementById('ebook-email').value.trim();
+    const profile   = document.getElementById('ebook-profile').value;
+    const country   = document.getElementById('ebook-country').value;
+    const region    = document.getElementById('ebook-region').value;
+    if(!firstName){ App.toast('Please enter your first name','error'); return; }
+    if(!lastName){ App.toast('Please enter your last name','error'); return; }
     if(!email||!email.includes('@')||!email.includes('.')){ App.toast('Please enter a valid email address','error'); return; }
+    if(!profile){ App.toast('Please select which best describes you','error'); return; }
     const leads = DB.getAll('ebook_leads')||[];
-    leads.push({ name, email, source:'ebook_landing', date:new Date().toISOString() });
+    leads.push({ firstName, lastName, email, profile, country, region, source:'ebook_landing', date:new Date().toISOString() });
     DB.setAll('ebook_leads', leads);
     document.getElementById('ebook-form').style.display='none';
     document.getElementById('ebook-success').style.display='block';
     App.toast('Enjoy the playbook!','success');
     /* WEBHOOK — uncomment and configure when email platform is ready:
     fetch('YOUR_WEBHOOK_URL',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name,email,source:'landlord_academy_ebook',tag:'new-landlord-playbook'})
+      body:JSON.stringify({firstName,lastName,email,profile,country,region,source:'landlord_academy_ebook',tag:'new-landlord-playbook'})
     }).catch(e=>console.log('Webhook error:',e)); */
   },
 
@@ -3802,8 +3818,28 @@ const App = {
           <h3 style="font-size:20px;margin-bottom:6px;color:var(--primary-dark);text-align:center">Get Your Free Copy</h3>
           <p style="font-size:14px;color:var(--text-mid);text-align:center;margin-bottom:22px">Enter your email and get instant access.</p>
           <div id="ebook-form">
-            <input type="text" id="ebook-name" placeholder="First name" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;margin-bottom:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
-            <input type="email" id="ebook-email" placeholder="Email address" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;margin-bottom:18px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+            <div style="display:flex;gap:10px;margin-bottom:12px">
+              <input type="text" id="ebook-fname" placeholder="First name *" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="text" id="ebook-lname" placeholder="Last name *" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <input type="email" id="ebook-email" placeholder="Email address *" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;margin-bottom:12px;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+            <select id="ebook-profile" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;margin-bottom:12px;outline:none;box-sizing:border-box;background:var(--bg-white);color:var(--text-dark)" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+              <option value="">I am a... (required)</option>
+              <option value="aspiring">Aspiring landlord — buying my first rental</option>
+              <option value="self-managed">Self-managed owner (1–5 units)</option>
+              <option value="multi-property">Multi-property owner (5–50 units)</option>
+              <option value="professional">Professional landlord / property manager (50+ units)</option>
+            </select>
+            <div style="display:flex;gap:10px;margin-bottom:18px">
+              <select id="ebook-country" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;outline:none;box-sizing:border-box;background:var(--bg-white);color:var(--text-dark)" onchange="App.ebookUpdateProvinces()" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                <option value="">Country (optional)</option>
+                <option value="CA">Canada</option>
+                <option value="US">United States</option>
+              </select>
+              <select id="ebook-region" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;outline:none;box-sizing:border-box;background:var(--bg-white);color:var(--text-dark)" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+                <option value="">Province / State</option>
+              </select>
+            </div>
             <button class="btn btn-primary btn-lg" style="width:100%;font-size:16px" onclick="App.submitEbook()">Send Me the Playbook</button>
             <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:12px;margin-bottom:0">No spam. Unsubscribe anytime.</p>
           </div>
