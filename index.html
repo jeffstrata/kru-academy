@@ -2167,7 +2167,118 @@ if(!localStorage.getItem('la_seeded_v2')){
   localStorage.setItem('la_seeded_v2', '1');
 }
 
+if(!localStorage.getItem('la_seeded_v3')){
+  DB.insert('resources', {
+    title: 'The Spring Lease Audit: What Alberta Landlords Should Review Before Renewal Season',
+    description: 'A practical guide to auditing your Alberta residential lease agreement before renewal season — security deposits, rent increase notice, entry rules, repair obligations, move-out notice, and prohibited clauses.',
+    type: 'blog',
+    content:
+      '<div class="content-callout"><strong>Legal note:</strong> This article reflects the Alberta Residential Tenancies Act (RSA 2004, c R-17.1) as of the date of publication. Landlords should verify current provisions directly with the RTA or consult a legal professional for specific situations. Last reviewed: April 2026.</div>' +
 
+      '<p>Spring is lease renewal season for many Alberta landlords. Tenancies that started in the fall or winter come up for their first or second anniversary, and landlords face a decision: renew on the same terms, propose a rent increase, or let the tenancy convert to month-to-month.</p>' +
+      '<p>Before any of that happens, the lease itself deserves a review.</p>' +
+      '<p>Most landlords use the same lease for years without reading it again after the initial signing. That\'s understandable, but it carries real risk. The legal environment around residential tenancies in Alberta changes. RTA amendments, updated regulations, and RTDRS decision patterns all affect how lease clauses perform when they\'re tested. A clause that was standard practice five years ago may now be unenforceable or contradicted by current RTA provisions.</p>' +
+      '<p>A spring lease audit is a two-hour investment that can prevent a costly dispute later. Here\'s what to look for.</p>' +
+
+      '<h3>Use the Alberta Standard Lease as Your Baseline</h3>' +
+      '<p>The Government of Alberta publishes a standard residential tenancy agreement that reflects current RTA requirements. Even if you\'re not using this exact document, it\'s a useful reference point. Compare your current lease against the standard version and note any significant divergences.</p>' +
+      '<p>The standard lease is available through the Alberta government\'s website. It covers the key provisions, explains what is and isn\'t negotiable under the RTA, and flags areas where additional terms may be added.</p>' +
+
+      '<h3>Key Areas to Audit</h3>' +
+
+      '<h4>1. Security Deposit Terms</h4>' +
+      '<p>Under the Alberta RTA, the maximum security deposit is one month\'s rent. This limit is frequently misunderstood. Landlords sometimes attempt to collect "first and last month\'s rent" as they might in other provinces, but that practice is not permitted in Alberta. The security deposit cannot exceed one month\'s rent, period.</p>' +
+      '<p><strong>What to check in your lease:</strong></p>' +
+      '<ul>' +
+      '<li>Is the security deposit amount within the legal limit?</li>' +
+      '<li>Does the lease specify that the deposit must be held in a separate account?</li>' +
+      '<li>Did you provide the tenant with a receipt for the deposit?</li>' +
+      '</ul>' +
+      '<div class="content-callout">The receipt requirement is often missed. Under the RTA, landlords are required to provide a receipt for the security deposit. Failing to do so can complicate the end-of-tenancy accounting.</div>' +
+
+      '<h4>2. Rent Increase Notice Requirements</h4>' +
+      '<p>Under the Alberta RTA, landlords must provide at least <strong>3 months written notice</strong> before a rent increase. This notice period applies to both fixed-term and periodic tenancies.</p>' +
+      '<p><strong>What to check:</strong></p>' +
+      '<ul>' +
+      '<li>Does your lease accurately describe the notice requirement for rent increases, or does it cite a different number?</li>' +
+      '<li>Does your standard notice template meet the "written" requirement in terms of how it\'s delivered and confirmed?</li>' +
+      '</ul>' +
+      '<div class="content-warning"><strong>Common error:</strong> Landlords send a text message or email saying "rent goes up in three months." Under the RTA, written notice has a specific meaning. The safer standard is a dated, written document delivered in a way that creates a record — whether printed and handed to the tenant, emailed with a read receipt, or delivered via a documented channel.</div>' +
+
+      '<h4>3. Notice to Enter</h4>' +
+      '<p>Under the RTA, landlords must provide at least <strong>24 hours written notice</strong> before entering a rental premises for non-emergency purposes, such as inspections or repairs. Emergency entry (where there is immediate risk to health or safety) is excepted.</p>' +
+      '<p><strong>What to check:</strong></p>' +
+      '<ul>' +
+      '<li>Does your lease correctly describe the notice to enter requirement?</li>' +
+      '<li>Does it specify what "written" means and how notice is to be delivered?</li>' +
+      '<li>Does it define the permitted hours of entry consistent with the RTA?</li>' +
+      '</ul>' +
+      '<p>Under the Act, the permitted hours for entry are generally <strong>8:00 am to 8:00 pm</strong>. Entry outside those hours requires the tenant\'s consent.</p>' +
+
+      '<h4>4. Repair and Maintenance Obligations</h4>' +
+      '<p>The RTA places maintenance obligations on landlords regardless of what a lease says. A landlord cannot contract out of the obligation to maintain a rental unit in a state of adequate repair and to comply with applicable health, safety, and housing standards.</p>' +
+      '<p><strong>What to check:</strong></p>' +
+      '<ul>' +
+      '<li>Does your lease define repair obligations in a way that contradicts the RTA? If so, those contradictory clauses are unenforceable.</li>' +
+      '<li>Does your lease clearly describe the tenant\'s obligations for minor maintenance — replacing light bulbs, maintaining cleanliness — in a way that is reasonable and consistent with the RTA?</li>' +
+      '<li>Does your lease describe the process for reporting maintenance issues? A defined process creates a paper trail that benefits both parties.</li>' +
+      '</ul>' +
+
+      '<h4>5. Move-Out Notice Requirements</h4>' +
+      '<p>For a periodic (month-to-month) tenancy in Alberta, the tenant is required to provide one full tenancy period of notice to terminate. For monthly tenancies, that\'s one full month\'s notice. The landlord is required to provide <strong>three months notice</strong> to terminate a periodic tenancy (unless the termination is for cause).</p>' +
+      '<p><strong>What to check:</strong></p>' +
+      '<ul>' +
+      '<li>Does your lease accurately describe notice requirements for both tenant and landlord termination?</li>' +
+      '<li>Does it distinguish between termination for cause and termination without cause?</li>' +
+      '<li>Does it describe the proper format for notice?</li>' +
+      '</ul>' +
+      '<div class="content-warning"><strong>Common problem:</strong> Leases that say "60 days notice" when the RTA specifies one full tenancy period. For a monthly tenancy, one full tenancy period means notice must be given before the start of the period it\'s intended to cover. Depending on the calendar, this can effectively mean more than 30 days.</div>' +
+
+      '<h4>6. Prohibited Clauses</h4>' +
+      '<p>Some clauses that appear in leases are unenforceable because they contradict the RTA. Common examples include:</p>' +
+      '<ul>' +
+      '<li>Clauses that prohibit tenants from having guests</li>' +
+      '<li>Clauses that limit tenant use of common areas beyond what\'s reasonable</li>' +
+      '<li>Clauses that require the tenant to waive their right to proper notice before entry</li>' +
+      '<li>Clauses that allow the landlord to terminate the tenancy for reasons not permitted under the RTA</li>' +
+      '</ul>' +
+      '<p>Including these clauses in a lease doesn\'t make them legal. Under the RTA, any provision that purports to waive or reduce a right granted to a tenant is void. Review your lease for clauses that may fall into this category and remove them. A clean lease is a better lease.</p>' +
+
+      '<h3>The Condition Inspection Report</h3>' +
+      '<p>The spring audit is also a good time to review your condition inspection reports. Under the RTA, landlords are required to complete a written condition inspection report at the start and end of each tenancy. This document, signed by both parties, is the primary evidence base for any security deposit dispute.</p>' +
+      '<p>If you\'ve been using a standardized inspection form consistently, verify that:</p>' +
+      '<ul>' +
+      '<li>The form captures all relevant areas of the unit</li>' +
+      '<li>You have copies signed by the tenant</li>' +
+      '<li>The move-in inspection is dated and filed</li>' +
+      '</ul>' +
+      '<div class="content-callout">If you\'ve been doing inspections informally, or not at all, building this into your process now is one of the highest-ROI improvements you can make. The condition inspection report is often the difference between recovering damages and eating the cost.</div>' +
+
+      '<h3>A Note on Addenda</h3>' +
+      '<p>Many landlords use addenda to cover things not addressed in the standard lease: pet policies, parking rules, smoking restrictions, storage assignments. Addenda are generally permitted under the RTA as long as they don\'t contradict the Act\'s provisions.</p>' +
+      '<p>Spring is a good time to review your addenda for clarity and enforceability. Vague addenda create disputes. Specific addenda — <em>"the tenant is permitted to keep one cat in the unit; no other pets are permitted without written consent from the landlord"</em> — are more useful than general ones.</p>' +
+
+      '<h3>What to Do If You Find Problems</h3>' +
+      '<p>If your lease audit reveals clauses that are incorrect, unenforceable, or contradicted by the current RTA, you have options:</p>' +
+      '<ul>' +
+      '<li><strong>For current tenancies:</strong> You generally cannot unilaterally change the terms of an existing lease. Changes require mutual agreement. If a clause is simply unenforceable, it\'s void regardless of whether it\'s removed — but update the document going forward.</li>' +
+      '<li><strong>For renewals:</strong> A renewal is an opportunity to put a corrected lease in place. Use that opportunity.</li>' +
+      '<li><strong>For new tenancies:</strong> Start clean. Use an updated lease that accurately reflects current RTA requirements and your actual practices.</li>' +
+      '</ul>' +
+
+      '<h3>The Bigger Picture</h3>' +
+      '<p>A lease is not just a legal formality. It\'s the operating agreement for a relationship that may last for years. Landlords who treat it as such — who read it, update it, and ensure it accurately reflects both their obligations and the tenant\'s — have significantly fewer disputes than landlords who sign it once and put it in a drawer.</p>' +
+      '<div class="content-formula">' +
+      '<div class="formula-text">Two hours now &gt; one RTDRS proceeding later</div>' +
+      '<div class="formula-sub">The spring renewal window is the natural time for this work. A lease audit is the highest-leverage legal task a landlord can complete before renewal season starts.</div>' +
+      '</div>',
+    tags: 'blog,legal,lease,Alberta,RTA,renewal,beginner',
+    category: 'all',
+    is_published: true,
+    created_at: new Date().toISOString()
+  });
+  localStorage.setItem('la_seeded_v3', '1');
+}
 
 // ================================================================
 //  LEGAL REFERENCE HUB DATA
