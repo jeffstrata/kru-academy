@@ -2280,6 +2280,45 @@ if(!localStorage.getItem('la_seeded_v3')){
   localStorage.setItem('la_seeded_v3', '1');
 }
 
+if(!localStorage.getItem('la_seeded_v4')){
+  DB.insert('resources', {
+    title: 'Your Property Management System Has a Maintenance Module. That Is Not the Same as a Maintenance System.',
+    description: 'Most property management platforms include a maintenance module. That does not mean maintenance is what they were built for. A structural argument for purpose-built coordination tools in high-stakes workflows.',
+    type: 'blog',
+    content:
+      '<div class="content-callout"><strong>A question I get often in sales conversations:</strong> "Our property management software has a maintenance module. Why would we use something separate?"<br><br>Fair question. Here is how I think about it.</div>' +
+
+      '<h3>This Is Not a Feature Question. It Is an Architecture Question.</h3>' +
+      '<p>Most property management software platforms include a maintenance module. That does not mean maintenance is what they are built for.</p>' +
+      '<p>Platforms built around accounting, leasing, and tenant management treat maintenance as an adjacent workflow. It works. It is functional. It captures the request, assigns the vendor, closes the ticket. But it was designed as one of twelve things the system does, not as the thing the system does.</p>' +
+
+      '<h3>The Other Modules Behave Predictably. Maintenance Does Not.</h3>' +
+      '<p>Accounting is rules-based and predictable. Leasing follows a defined lifecycle. Tenant management is relational but structured. These workflows were built for software. A platform that handles them well handles them well because the logic is clean and the rules are stable.</p>' +
+      '<p>Maintenance is none of these things. It is chaotic, urgent, vendor-dependent, safety-sensitive, and subject to provincial legislation that varies in unforgiving ways. When something breaks at 2 AM in a condo building with 40 units, the coordination layer needs to be purpose-built, not adapted.</p>' +
+      '<div class="content-warning"><strong>The real cost of coordination failure is rarely the repair.</strong> It is the ticket that sat too long, the vendor who never got the approval, the emergency that happened outside business hours when no one had a documented protocol, or the legal claim that hinges on a photo that was never taken.</div>' +
+
+      '<h3>Why This Matters for Boards and Operators</h3>' +
+      '<p>For governance-minded boards and property management firms, this distinction matters more than it seems. Fiduciary responsibility does not allow for "good enough" when the category carries legal exposure, tenant safety implications, and significant dollar flow.</p>' +
+      '<p>The platforms that serve the accounting function well were not designed with that weight in mind. They were designed to process transactions. Maintenance is not a transaction. It is a sequence of high-stakes judgment calls made across multiple parties under time pressure.</p>' +
+
+      '<h3>The Honest Conversation</h3>' +
+      '<p>The conversation with a property management firm or condo board is not about replacing their existing stack. It is about recognizing which workflows deserve dedicated tooling.</p>' +
+      '<p>Accounting deserves one tool. Leasing deserves another. Maintenance deserves its own. Forcing all three into the same system serves the vendor, not the operator.</p>' +
+      '<div class="content-formula"><div class="formula-text">A modern operational stack is built around purpose, not consolidation.</div><div class="formula-sub">The workflows that carry the most risk deserve the most specialized tools.</div></div>' +
+
+      '<h3>Where Kru Fits</h3>' +
+      '<p>Kru is not a replacement for your property management system. It is the coordination layer that sits alongside it, purpose-built for the workflow that carries the most risk and the most complexity.</p>' +
+      '<p>You keep your accounting, your leasing, your tenant records where they are. You keep your contractors, your relationships, your judgment. Kru provides the structure and visibility that maintenance specifically requires to be managed well at scale.</p>' +
+      '<p>For boards, operators, and property management firms who have outgrown "good enough" in this category, the conversation starts with recognizing that maintenance is not a minor module of an adjacent system. It is the workflow that most directly determines tenant safety, asset preservation, and legal exposure over time.</p>' +
+      '<div class="content-bridge"><strong>Ready to see the difference?</strong><p>Explore how Kru works alongside your existing stack at mykru.ca, or contact jeff@mykru.ca for a conversation.</p></div>',
+    tags: 'operations,software,governance,maintenance,property-management',
+    category: 'all',
+    is_published: true,
+    created_at: new Date().toISOString()
+  });
+  localStorage.setItem('la_seeded_v4', '1');
+}
+
 // ================================================================
 //  LEGAL REFERENCE HUB DATA
 // ================================================================
