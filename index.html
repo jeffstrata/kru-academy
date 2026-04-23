@@ -3931,13 +3931,27 @@ const App = {
     const leads = DB.getAll('ebook_leads')||[];
     leads.push({ firstName, lastName, email, profile, country, region, source:'ebook_landing', date:new Date().toISOString() });
     DB.setAll('ebook_leads', leads);
+    // Push to MailerLite (Landlord Playbook Landing Page form — adds to Landlord Playbook group, triggers nurture automation)
+    try {
+      const mlBody = new URLSearchParams({
+        'fields[email]': email,
+        'fields[name]': firstName,
+        'fields[last_name]': lastName,
+        'fields[profile]': profile,
+        'fields[country]': country || '',
+        'fields[state]': region || '',
+        'ml-submit': '1',
+        'anticsrf': 'true'
+      });
+      fetch('https://assets.mailerlite.com/jsonp/2234203/forms/185568921003230871/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: mlBody.toString()
+      }).catch(e => console.warn('MailerLite subscribe error:', e));
+    } catch(e){ console.warn('MailerLite submit error:', e); }
     document.getElementById('ebook-form').style.display='none';
     document.getElementById('ebook-success').style.display='block';
     App.toast('Enjoy the playbook!','success');
-    /* WEBHOOK — uncomment and configure when email platform is ready:
-    fetch('YOUR_WEBHOOK_URL',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({firstName,lastName,email,profile,country,region,source:'landlord_academy_ebook',tag:'new-landlord-playbook'})
-    }).catch(e=>console.log('Webhook error:',e)); */
   },
 
   renderEbook(){
