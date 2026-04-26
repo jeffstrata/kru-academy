@@ -23,7 +23,7 @@
   <meta property="og:title" content="Landlord Academy — Operational Playbook for Canadian Landlords">
   <meta property="og:description" content="Free guides, legal references, and 1-on-1 advisory sessions for Canadian landlords and property managers. Built by an operator, not a guru.">
   <meta property="og:url" content="https://landlordacademy.ca/">
-  <meta property="og:image" content="https://landlordacademy.ca/la.logo.png">
+  <meta property="og:image" content="https://landlordacademy.ca/lalogo.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Landlord Academy — Canadian Landlord Training">
@@ -33,7 +33,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Landlord Academy — Operational Playbook for Canadian Landlords">
   <meta name="twitter:description" content="Free guides, legal references, and 1-on-1 advisory sessions for Canadian landlords and property managers. Built by an operator, not a guru.">
-  <meta name="twitter:image" content="https://landlordacademy.ca/la.logo.png">
+  <meta name="twitter:image" content="https://landlordacademy.ca/lalogo.png">
 
   <!-- Structured Data — Organization -->
   <script type="application/ld+json">
@@ -43,8 +43,8 @@
     "name": "Landlord Academy",
     "alternateName": "Landlord Academy Canada",
     "url": "https://landlordacademy.ca",
-    "logo": "https://landlordacademy.ca/la.logo.png",
-    "image": "https://landlordacademy.ca/la.logo.png",
+    "logo": "https://landlordacademy.ca/laemblem.png",
+    "image": "https://landlordacademy.ca/lalogo.png",
     "description": "Landlord Academy provides free guides, legal references, and 1-on-1 advisory sessions for Canadian landlords and property managers. Field-tested content on tenant screening, RTA compliance, lease execution, maintenance, and investment analysis.",
     "address": {
       "@type": "PostalAddress",
@@ -150,8 +150,8 @@
   </script>
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" href="la.logo.png">
-  <link rel="apple-touch-icon" href="la.logo.png">
+  <link rel="icon" type="image/png" href="laemblem.png">
+  <link rel="apple-touch-icon" href="laemblem.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2844,7 +2844,7 @@ const App = {
   renderNav(){
     const u=this.state.user, uc=this.unreadCount();
     return `<nav class="navbar">
-      <div class="nav-logo" onclick="App.go('home')"><img src="la.logo.png" alt="Landlord Academy" style="width:36px;height:36px;border-radius:8px;object-fit:contain"><div class="nav-logo-text" style="display:flex;flex-direction:column;line-height:1.2"><span>Landlord <em>Academy</em></span><span style="font-size:10px;font-weight:400;color:rgba(255,255,255,0.42);letter-spacing:0.4px;margin-top:1px">A Boardwise Service</span></div></div>
+      <div class="nav-logo" onclick="App.go('home')"><img src="laemblem.png" alt="Landlord Academy" style="width:36px;height:36px;border-radius:8px;object-fit:contain"><div class="nav-logo-text" style="display:flex;flex-direction:column;line-height:1.2"><span>Landlord <em>Academy</em></span><span style="font-size:10px;font-weight:400;color:rgba(255,255,255,0.42);letter-spacing:0.4px;margin-top:1px">A Boardwise Service</span></div></div>
       <button class="mobile-toggle" onclick="App.state.mobileNav=!App.state.mobileNav;App.render()">&#9776;</button>
       <div class="nav-links ${this.state.mobileNav?'show':''}">
         <button class="nav-link ${this.state.page==='home'?'active':''}" onclick="App.go('home')">Home</button>
@@ -2875,7 +2875,7 @@ const App = {
   // HOME
   renderHome(){
     return `<div class="hero">
-      <img src="la.logo.png" alt="Landlord Academy" style="max-width:440px;width:80%;margin:0 auto 12px;display:block;position:relative;z-index:1">
+      <img src="lalogo.png" alt="Landlord Academy" style="max-width:440px;width:80%;margin:0 auto 12px;display:block;position:relative;z-index:1">
       <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:28px;position:relative;z-index:1;opacity:.85"><span style="font-size:13px;font-weight:400;color:rgba(255,255,255,.7);letter-spacing:.5px">powered by</span><img src="krulogoblack.png" alt="Kru" style="height:18px;object-fit:contain;mix-blend-mode:lighten"></div>
       <h1>The Operational <em>Playbook</em><br>for Canadian Landlords</h1>
       <p>Free guides, legal references, and field-tested frameworks for landlords and property managers who want to run their portfolio like a business. Built by an operator, not a guru.</p>
@@ -4248,7 +4248,7 @@ const App = {
 
   renderFooter(){
     return `<footer class="footer"><div class="footer-grid">
-      <div><h4 style="display:flex;align-items:center;gap:8px"><img src="la.logo.png" alt="Landlord Academy" style="width:30px;height:30px;border-radius:6px;object-fit:contain"> Landlord Academy</h4>
+      <div><h4 style="display:flex;align-items:center;gap:8px"><img src="laemblem.png" alt="Landlord Academy" style="width:30px;height:30px;border-radius:6px;object-fit:contain"> Landlord Academy</h4>
         <p style="margin-top:12px;opacity:.55">Free guides, legal references, and 1-on-1 advisory for Canadian landlords and property managers. Built by an operator, not a guru.</p></div>
       <div><h4>Explore</h4><ul class="footer-links"><li><a href="#" onclick="event.preventDefault();App.go('home')">Home</a></li><li><a href="#" onclick="event.preventDefault();App.go('resources')">Free Resources</a></li><li><a href="#" onclick="event.preventDefault();App.go('ebook')">Free Playbook</a></li><li><a href="#" onclick="event.preventDefault();App.go('advisory')">Advisory</a></li><li><a href="#" onclick="event.preventDefault();App.go('legal-hub')">Legal Hub</a></li></ul></div>
       <div><h4>Kru</h4><ul class="footer-links"><li><a href="https://mykru.ca" target="_blank">&#9889; Maintenance Platform</a></li><li><a href="https://mykru.ca" target="_blank">About Us</a></li><li><a href="https://mykru.ca" target="_blank">Contact</a></li><li><a href="#" onclick="event.preventDefault();App.showChatbotManual()">Find My Path</a></li></ul></div>
