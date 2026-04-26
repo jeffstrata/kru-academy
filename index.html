@@ -255,7 +255,7 @@
     .card-body{padding:26px}
 
     /* HERO — no gradient blobs, editorial rhythm */
-    .hero{background:var(--ink);color:#fff;padding:120px 24px 110px;text-align:center;position:relative;overflow:hidden}
+    .hero{background:var(--ink);color:#fff;padding:72px 24px 80px;text-align:center;position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.035) 1px,transparent 0);background-size:32px 32px;pointer-events:none;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
     .hero-eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;position:relative;z-index:1}
     .hero h1{font-family:var(--font-serif);font-size:clamp(36px,5.5vw,62px);font-weight:400;margin-bottom:24px;position:relative;z-index:1;letter-spacing:-.015em;line-height:1.08;max-width:900px;margin-left:auto;margin-right:auto}
@@ -266,7 +266,7 @@
     .hero .btn-primary:hover{background:var(--bg-section);border-color:var(--bg-section)}
     .hero .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,0.3)}
     .hero .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.04)}
-    @media(max-width:640px){.hero{padding:80px 24px 72px}}
+    @media(max-width:640px){.hero{padding:56px 24px 64px}}
 
     /* COURSE CARDS */
     .course-thumb{height:180px;background:var(--primary-dark);background-image:linear-gradient(135deg,#1E3033 0%,#2A4347 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:44px;color:rgba(255,255,255,0.14);position:relative;letter-spacing:-.02em}
@@ -2875,7 +2875,7 @@ const App = {
   // HOME
   renderHome(){
     return `<div class="hero">
-      <img src="lalogo.png" alt="Landlord Academy" style="max-width:560px;width:85%;margin:0 auto 12px;display:block;position:relative;z-index:1;filter:invert(1);mix-blend-mode:screen">
+      <img src="lalogo.png" alt="Landlord Academy" style="height:90px;width:auto;max-width:90%;margin:0 auto 4px;display:block;position:relative;z-index:1;filter:invert(1);mix-blend-mode:screen">
       <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:28px;position:relative;z-index:1;opacity:.85"><span style="font-size:13px;font-weight:400;color:rgba(255,255,255,.7);letter-spacing:.5px">powered by</span><img src="krulogoblack.png" alt="Kru" style="height:18px;object-fit:contain;mix-blend-mode:lighten"></div>
       <h1>The Operational <em>Playbook</em><br>for Canadian Landlords</h1>
       <p>Free guides, legal references, and field-tested frameworks for landlords and property managers who want to run their portfolio like a business. Built by an operator, not a guru.</p>
