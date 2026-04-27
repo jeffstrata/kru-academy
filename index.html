@@ -3204,13 +3204,13 @@ const App = {
   // FREE RESOURCES
   renderResources(){
     const filter = this.state.resourceFilter || 'all';
-    const allRes = DB.getAll('resources');
+    const allRes = DB.getAll('resources').filter(r=>r.type!=='video');
     const filtered = filter==='all' ? allRes : allRes.filter(r=>r.type===filter);
-    const types = [{key:'all',label:'All Resources'},{key:'video',label:'&#127909; Videos'},{key:'blog',label:'&#128221; Blogs'},{key:'guide',label:'&#128214; Guides'}];
+    const types = [{key:'all',label:'All Resources'},{key:'blog',label:'&#128221; Blogs'},{key:'guide',label:'&#128214; Guides'}];
     return `<div style="background:var(--dark);color:#fff;padding:60px 24px">
       <div style="max-width:800px;margin:0 auto;text-align:center">
         <h1 style="font-size:40px;margin-bottom:14px;font-weight:800;letter-spacing:-.02em">Free Resources</h1>
-        <p style="font-size:17px;opacity:.6;margin-bottom:16px">Videos, guides, and blog posts to help you succeed in property management — completely free.</p>
+        <p style="font-size:17px;opacity:.6;margin-bottom:16px">Guides and blog posts to help you succeed in property management — completely free.</p>
         <p style="font-size:14px;opacity:.35">Powered by <a href="https://mykru.ca" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Kru</a> — the maintenance platform built for property managers.</p>
       </div></div>
       <div class="container">
