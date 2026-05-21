@@ -653,6 +653,32 @@
     .art-byline-text strong{font-size:15px;color:var(--art-text)}
     /* legal note */
     .art-legal{font-size:13px;color:var(--art-text-light);font-style:italic;border-top:1px solid var(--art-border);padding-top:20px;margin-top:16px;line-height:1.6}
+    /* Article-level utility blocks */
+    .article-body ul,.article-body ol{margin:0 0 24px 22px;color:var(--art-text-mid)}
+    .article-body ul li,.article-body ol li{margin-bottom:8px;line-height:1.7}
+    .article-body ul li::marker{color:var(--art-blue)}
+    .article-body blockquote{border-left:4px solid var(--art-blue);background:var(--art-pale);padding:18px 24px;margin:24px 0;border-radius:0 10px 10px 0;font-style:italic;color:var(--art-text)}
+    .article-body table{width:100%;border-collapse:separate;border-spacing:0;margin:24px 0;border-radius:12px;overflow:hidden;border:1.5px solid var(--art-border);font-size:14.5px}
+    .article-body thead tr{background:var(--art-navy)}
+    .article-body thead th{color:#fff;padding:12px 16px;text-align:left;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+    .article-body tbody td{padding:12px 16px;border-bottom:1px solid var(--art-border);color:var(--art-text-mid);vertical-align:top}
+    .article-body tbody tr:nth-child(even){background:var(--art-pale)}
+    .article-body hr{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--art-border),transparent);margin:40px 0}
+    /* Premium PDF download button (article layout) */
+    .art-pdf-btn{display:inline-flex;align-items:center;gap:10px;background:var(--art-navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 22px;border-radius:10px;border:none;cursor:pointer;transition:background .2s,transform .15s;margin:0 0 8px;text-decoration:none;letter-spacing:.01em}
+    .art-pdf-btn:hover{background:var(--art-blue);transform:translateY(-1px)}
+    .art-pdf-btn svg{width:16px;height:16px;stroke:#fff;flex-shrink:0}
+    .art-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:24px 0 0}
+    .art-back-link{display:inline-flex;align-items:center;gap:6px;color:var(--art-text-mid);font-size:14px;font-weight:500;text-decoration:none;padding:8px 0;transition:color .2s}
+    .art-back-link:hover{color:var(--art-navy)}
+    /* Card thumbs upgrade — premium look (no emoji) */
+    .resource-thumb{background:linear-gradient(135deg,var(--art-navy) 0%,var(--art-blue) 100%);height:148px;border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .resource-thumb::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(255,255,255,.10) 0%,transparent 50%);pointer-events:none}
+    .resource-thumb.guide{background:linear-gradient(135deg,#0E1316 0%,#2a3640 100%)}
+    .resource-thumb.blog{background:linear-gradient(135deg,var(--art-navy) 0%,var(--art-blue) 100%)}
+    .resource-thumb-mark{position:relative;z-index:1;font-family:'DM Serif Display',serif;font-size:38px;color:#fff;letter-spacing:-.02em;line-height:1;opacity:.95}
+    .resource-thumb-mark span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;opacity:.65;margin-top:8px;text-align:center}
+    .resource-type{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.92);color:var(--art-navy);font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:20px;z-index:2}
     @media(max-width:600px){
       .step-header{flex-direction:row}.step-title{font-size:22px}
       .article-body h2{font-size:24px}
@@ -3641,15 +3667,17 @@ const App = {
   },
 
   renderResourceCard(r){
-    const icons={video:'&#127909;',blog:'&#128221;',guide:'&#128214;',podcast:'&#127911;'};
+    const typeLabel = r.type==='guide'?'Guide':r.type==='blog'?'Article':r.type==='video'?'Video':'Resource';
+    const mark = r.type==='guide'?'LA':r.type==='blog'?'LA':'LA';
     return `<div class="card resource-card" onclick="App.state.currentResource=DB.find('resources',x=>x.id===${r.id});App.go('resource-detail')">
-      <div class="resource-thumb ${r.type}">${icons[r.type]||'&#128196;'}
-        <span class="resource-type ${r.type}">${r.type}</span>
+      <div class="resource-thumb ${r.type}">
+        <span class="resource-type ${r.type}">${typeLabel}</span>
+        <div class="resource-thumb-mark">${mark}<span>Landlord Academy</span></div>
       </div>
       <div class="card-body">
-        <h3 style="font-size:17px;margin-bottom:8px">${this.esc(r.title)}</h3>
-        <p style="font-size:14px;color:var(--text-mid);line-height:1.5">${this.esc((r.description||'').substring(0,120))}${(r.description||'').length>120?'...':''}</p>
-        <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between">
+        <h3 style="font-size:17px;margin-bottom:8px;line-height:1.35">${this.esc(r.title)}</h3>
+        <p style="font-size:14px;color:var(--text-mid);line-height:1.55">${this.esc((r.description||'').substring(0,140))}${(r.description||'').length>140?'...':''}</p>
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between">
           <span class="badge badge-free">FREE</span>
           <span style="font-size:13px;color:var(--accent);font-weight:600">Read More &rarr;</span>
         </div>
@@ -3658,63 +3686,52 @@ const App = {
 
   renderResourceDetail(){
     const r = this.state.currentResource; if(!r) return '';
-    // Rich article layout for blog / text resources with content
-    if((r.type==='blog'||r.type==='text') && r.content){
-      const readTime = r.readTime || '8 min read';
-      const eyebrow = r.eyebrow || 'Landlord Academy';
-      const location = r.location || 'Canada';
-      return `<header class="art-hero">
-        <span class="hero-eyebrow">${this.esc(eyebrow)}</span>
-        <h1>${this.esc(r.title)}</h1>
-        <p class="hero-subtitle">${this.esc(r.description)}</p>
-        <div class="hero-meta">
-          <span><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>${readTime}</span>
-          <span><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>Updated March 2026</span>
-          <span><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>${location}</span>
-        </div>
-      </header>
-      <main><div class="art-container">
-        <button class="btn btn-outline btn-sm" onclick="App.go('resources')" style="margin:24px 0;border-color:var(--art-border);color:var(--art-text-mid)">&larr; Back to Resources</button>
-        <article class="article-body">
-          ${r.content}
-          <div class="art-byline">
-            <div class="art-byline-avatar">J</div>
-            <div class="art-byline-text">
-              <strong>Jeff Kiers</strong>
-              <p>VP Growth &amp; Partnerships, Kru Property Solutions &mdash; <a href="mailto:jeff@mykru.ca" style="color:var(--art-blue)">jeff@mykru.ca</a></p>
-            </div>
-          </div>
-          <p class="art-legal">This guide is for general informational purposes. Provincial tenancy legislation, human rights law, and privacy rules vary and may change. This is not legal advice. Consult a qualified professional or your provincial landlord-tenant board for guidance specific to your situation.</p>
-        </article>
-      </div></main>`;
-    }
-    // Default layout for video / guide / other
-    let content = '';
+    // Video resources keep their own layout
     if(r.type==='video' && r.url){
       const vid = this.ytId(r.url);
-      content = `<div class="video-container"><iframe src="https://www.youtube.com/embed/${vid}" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`;
+      return `<div class="container" style="max-width:800px">
+        <button class="btn btn-outline btn-sm" onclick="App.go('resources')" style="margin-bottom:24px">&larr; Back to Resources</button>
+        <h1 style="font-size:32px;margin-bottom:12px">${this.esc(r.title)}</h1>
+        <p style="color:var(--text-mid);font-size:16px;margin-bottom:24px">${this.esc(r.description)}</p>
+        <div class="video-container"><iframe src="https://www.youtube.com/embed/${vid}" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+      </div>`;
     }
-    if(r.content) content += `<div class="lesson-content-text">${r.content}</div>`;
-    return `<div class="container" style="max-width:800px">
-      <button class="btn btn-outline btn-sm" onclick="App.go('resources')" style="margin-bottom:24px">&larr; Back to Resources</button>
-      <span class="badge badge-free" style="margin-bottom:12px">FREE</span>
-      <h1 style="font-size:32px;margin-bottom:12px">${this.esc(r.title)}</h1>
-      <p style="color:var(--text-mid);font-size:16px;margin-bottom:16px">${this.esc(r.description)}</p>
-      ${r.content?`<button class="pdf-download-btn" onclick="App.exportPDF('${this.esc(r.title)}','.lesson-content-text')"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download as PDF</button>`:''}
-      ${content}
-      <div style="margin-top:48px;background:var(--bg-section);border-radius:var(--radius);padding:32px;text-align:center">
-        <h3 style="font-size:20px;margin-bottom:8px">Want to go deeper?</h3>
-        <p style="color:var(--text-mid);margin-bottom:20px">Explore our full courses with quizzes, certifications, and expert instruction.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="App.go('courses')">Browse Courses</button>
-          <a href="https://mykru.ca" target="_blank" rel="noopener" class="btn btn-dark" style="text-decoration:none">Try Kru Platform</a>
-        </div>
-        <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(0,0,0,.08)">
-          <p style="font-size:13px;color:var(--text-light);margin-bottom:10px">Or get our complete free guide:</p>
-          <button class="btn btn-sm" style="background:var(--bg-section);border:1px solid var(--border);color:var(--primary-dark)" onclick="App.go('ebook')">&#128214; Download the Landlord Playbook (Free)</button>
-        </div>
+    // PREMIUM ARTICLE LAYOUT — used for ALL resources (blog, guide, text)
+    const typeLabel = r.type==='guide' ? 'Operational Guide' : r.type==='blog' ? 'Article' : 'Resource';
+    const readTime = r.readTime || (r.type==='guide' ? '10 min read' : '8 min read');
+    const eyebrow = r.eyebrow || typeLabel;
+    const location = r.location || 'Canada';
+    return `<header class="art-hero">
+      <span class="hero-eyebrow">${this.esc(eyebrow)}</span>
+      <h1>${this.esc(r.title)}</h1>
+      <p class="hero-subtitle">${this.esc(r.description)}</p>
+      <div class="hero-meta">
+        <span><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>${readTime}</span>
+        <span><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>Updated 2026</span>
+        <span><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>${location}</span>
       </div>
-    </div>`;
+    </header>
+    <main><div class="art-container">
+      <div class="art-toolbar">
+        <a href="javascript:void(0)" class="art-back-link" onclick="App.go('resources')">&larr; Back to Resources</a>
+        ${r.content?`<button class="art-pdf-btn" onclick="App.exportPDF('${this.esc(r.title).replace(/'/g,"\\'")}','.article-body')"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download as PDF</button>`:''}
+      </div>
+      <article class="article-body">
+        ${r.content||''}
+        <div class="kru-note">
+          <div class="kru-note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <p><strong>Need this applied to your portfolio?</strong> Free guides cover the framework. A one-hour Advisory call with Jeff covers your specific situation. <a href="javascript:void(0)" onclick="App.go('advisory')">Book an Advisory session &rarr;</a></p>
+        </div>
+        <div class="art-byline">
+          <div class="art-byline-avatar">J</div>
+          <div class="art-byline-text">
+            <strong>Jeff Kiers</strong>
+            <p>Founder &amp; CEO, Landlord Academy &middot; Founder &amp; Principal Consultant, Boardwise Governance Solutions &mdash; <a href="mailto:Jeff@getboardwise.com" style="color:var(--art-blue)">Jeff@getboardwise.com</a></p>
+          </div>
+        </div>
+        <p class="art-legal">This ${r.type==='guide'?'guide':'article'} is for general informational purposes. Provincial tenancy legislation, human rights law, and privacy rules vary and may change. This is not legal advice. Consult a qualified professional or your provincial landlord-tenant board for guidance specific to your situation.</p>
+      </article>
+    </div></main>`;
   },
 
   // COURSE DETAIL
