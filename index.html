@@ -2378,6 +2378,81 @@ if(!localStorage.getItem('la_seeded_v6')){
 }
 
 // ================================================================
+//  la_seeded_v7 — New blog post: Unauthorized occupants and shared utilities
+// ================================================================
+if(!localStorage.getItem('la_seeded_v7')){
+  DB.insert('resources', {
+    title: "Your Tenant's Friend Moved In and Now the Utility Bills Are Up. Here Is What You Can Actually Do.",
+    type: 'blog',
+    category: 'all',
+    tags: ['shared-utilities','unauthorized-occupants','lease','operations','owner-occupied','basement-suite'],
+    description: "A common question from Canadian owner-occupier landlords: my tenant’s friend seems to have moved in, and now the utility bills are climbing. What are your actual rights and obligations when the lease says one occupant and the reality says two?",
+    eyebrow: 'Lease & Operations',
+    location: 'Canada',
+    readTime: '8 min read',
+    content:
+      '<div class="content-callout"><strong>The situation, paraphrased from a recent post in a landlord community:</strong> “I rented my basement to a young man. Now his friend seems to have moved in. I live alone upstairs. Utilities are split 50/50. The basement does a load of laundry every day, sometimes two. Is this excessive?”<br><br>This question is more common than most landlords realize, and the answer involves two separate issues that get tangled together: unauthorized occupants and utility usage in shared-meter arrangements. Each has its own rules.</div>' +
+
+      '<h3>The Real Question Is Not the Laundry</h3>' +
+      '<p>One or two loads of laundry per day from a single basement suite is high, but it is not absurd, and it is not the actual problem. The actual problem is that the lease was signed for one occupant and there now appears to be two. The increased utility usage is a symptom. The unauthorized occupancy is the cause.</p>' +
+      '<p>If you only address the utility issue, you are negotiating around a symptom while ignoring the bigger compliance question. If you address the occupancy issue, the utility question often resolves itself.</p>' +
+
+      '<h3>What the Lease Probably Says</h3>' +
+      '<p>A standard residential lease in Canada lists named occupants. The named tenant is the one legally responsible for paying rent and complying with the lease. Anyone else living in the unit, even temporarily, is either a guest, an authorized additional occupant, or an unauthorized occupant.</p>' +
+      '<p>Guests are people who visit, even for extended periods, but do not relocate their primary residence to your property. There is no universal legal definition of how long a guest can stay before becoming an occupant, but most leases include a clause that addresses this. A common version: “guests staying more than 14 consecutive days or more than 30 days in any 12-month period are considered additional occupants and require landlord approval.”</p>' +
+      '<p>Authorized additional occupants are people you have approved in writing. They are sometimes added to the lease as occupants without being added as tenants. They live there legitimately but are not legally responsible for the rent.</p>' +
+      '<p>Unauthorized occupants are people who have effectively moved in without the landlord’s approval. This is the category the original question is asking about.</p>' +
+
+      '<h3>What Counts as “Moved In”</h3>' +
+      '<p>The signals that someone has moved in rather than visited extensively:</p>' +
+      '<ul><li>Their belongings are in the unit. Clothing in the closet, toiletries in the bathroom, personal items in shared spaces.</li><li>They receive mail at the address.</li><li>They have keys, or access independently of the original tenant.</li><li>They are present consistently, including when the original tenant is away.</li><li>Their car is parked there overnight on a regular basis.</li><li>Neighbours recognize them as a resident, not a visitor.</li></ul>' +
+      '<p>You do not need to confirm every one of these. Two or three is usually enough to establish that the situation has moved past extended visitation.</p>' +
+
+      '<h3>The Legal Framework</h3>' +
+      '<p>Provincial tenancy legislation in Canada generally allows landlords to require approval before additional occupants move in. The Alberta Residential Tenancies Act, the Ontario Residential Tenancies Act, and the BC Residential Tenancy Act each include some version of this principle, though the enforcement mechanisms vary.</p>' +
+      '<p>Importantly, you cannot unreasonably refuse a request for an additional occupant. Refusing approval based on protected grounds under human rights legislation, such as family status or marital status, creates legal exposure. But you can refuse based on legitimate operational concerns, including increased utility usage, capacity of the unit, or compliance with municipal occupancy bylaws.</p>' +
+      '<p>You also cannot evict a tenant just for having an unauthorized occupant in the unit, in most cases. What you can do is treat the unauthorized occupancy as a breach of the lease and use it as a basis for either renegotiation, formal addition of the occupant to the lease, or eventual termination if the breach is not resolved.</p>' +
+
+      '<div class="content-warning"><strong>Important context for owner-occupier landlords:</strong> When you live in the same building as your tenant, the legal framework can shift. In Alberta, for example, a “roommate” arrangement where the landlord shares living space with the tenant may fall outside the Residential Tenancies Act entirely. In Ontario, certain owner-occupied situations are exempt from the RTA. Always confirm which legislation applies to your specific arrangement before relying on standard landlord-tenant rules.</div>' +
+
+      '<h3>What to Do About the Utility Question</h3>' +
+      '<p>A 50/50 utility split is a common arrangement for shared-meter properties, but it has a built-in vulnerability: the split assumes equal usage. When one side of the property has one occupant and the other has two, the split is no longer fair.</p>' +
+      '<p>There are three ways to handle this.</p>' +
+
+      '<h4>Option 1: Renegotiate the Split</h4>' +
+      '<p>If the tenant has effectively brought in a second occupant, the simplest adjustment is to renegotiate the utility split. A 60/40 split favouring you is reasonable for an owner-occupier upstairs with one occupant and a basement suite with two. The conversation is straightforward: the utility costs are no longer balanced because the usage pattern has changed.</p>' +
+      '<p>This option works if you are willing to formalize the second occupant as part of the deal. You get more utility recovery; the tenant gets legitimacy for their roommate. You document everything in writing.</p>' +
+
+      '<h4>Option 2: Sub-Meter or Switch to Usage-Based</h4>' +
+      '<p>If you anticipate continuing arrangements like this, install a sub-meter or switch to a per-unit metering arrangement with your utility provider. This costs money upfront but eliminates the dispute permanently. Each side pays for what they use. Future tenants will not be able to argue over a fixed split.</p>' +
+
+      '<h4>Option 3: Convert to All-Inclusive Rent</h4>' +
+      '<p>Some landlords find that ongoing utility negotiations are more friction than they are worth. Converting to an all-inclusive rent that already accounts for typical usage, and increasing the rent slightly to cover variance, removes the issue from monthly conversations. The downside is you absorb the risk of unusual usage spikes. This works best in stable buildings with predictable patterns.</p>' +
+
+      '<h3>How to Have the Actual Conversation</h3>' +
+      '<p>The conversation you need to have is not about laundry. It is about occupancy.</p>' +
+      '<p>A direct but calm version: “I have noticed your friend has been here consistently for the past several weeks. I want to check in. If he is staying as a guest, that is fine, but I want to understand the situation. If he has moved in, we need to update the lease and revisit the utility arrangement because the original deal was based on one occupant.”</p>' +
+      '<p>This framing accomplishes three things. It acknowledges what you have observed without making accusations. It gives the tenant a chance to clarify the situation. It signals that you are not opposed to the arrangement, but you require it to be formalized.</p>' +
+      '<p>Most tenants in this situation will admit that yes, the friend has moved in, often because they did not realize they needed to ask. From there, you can either approve the second occupant with a lease amendment and adjusted utility split, or you can clarify that the original lease terms must be honored, which means the second person needs to find their own arrangement.</p>' +
+
+      '<div class="content-formula"><div class="formula-text">Address the occupancy. The utilities follow.</div><div class="formula-sub">Symptom-by-symptom enforcement creates friction. Addressing the lease term resolves the underlying issue.</div></div>' +
+
+      '<h3>What to Do Going Forward</h3>' +
+      '<p>For your next lease, three small changes prevent this situation from recurring:</p>' +
+      '<ol><li>Explicitly state the named occupants in the lease and include language defining how long a guest can stay before becoming an occupant. Fourteen consecutive days is a defensible threshold.</li><li>Include a clause requiring landlord approval in writing for any additional occupants, with a clear process for requesting and granting approval.</li><li>Either install separate utility meters before the next tenancy begins, or include a clause that addresses how utility splits will be recalculated if the occupancy of either unit changes during the term.</li></ol>' +
+      '<p>None of these changes prevent the situation from happening. They simply give you a documented framework for addressing it without ambiguity when it does.</p>' +
+
+      '<h3>The Honest Conclusion</h3>' +
+      '<p>One or two loads of laundry per day is on the higher end of normal, but it is not by itself a violation of anything. The actual issue is that the unit’s occupancy has changed and the original deal no longer reflects the reality.</p>' +
+      '<p>The right move is to address the occupancy directly, formalize whatever the new arrangement is going to be, and adjust the utility split if appropriate. Trying to manage the utility usage without addressing the underlying occupancy question puts you in an ongoing negotiation that never resolves.</p>' +
+      '<p>Most landlord-tenant friction comes from situations where the lease terms and the actual arrangement have drifted apart. The fix is rarely to enforce the original lease more strictly. It is to update the lease to reflect what is actually happening, with the appropriate financial adjustments.</p>' +
+
+      '<div class="content-bridge"><strong>Want a lease template that handles this in advance?</strong><p>The Landlord Academy resources section includes guidance on lease drafting, occupancy clauses, and utility arrangements for owner-occupier landlords. Browse the resources to download the free checklists, or book an advisory session if you want to walk through your specific lease before the next renewal.</p></div>'
+  });
+  localStorage.setItem('la_seeded_v7', '1');
+}
+
+// ================================================================
 //  LEGAL REFERENCE HUB DATA
 // ================================================================
 const LEGAL_HUB = {
