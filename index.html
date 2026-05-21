@@ -2453,6 +2453,96 @@ if(!localStorage.getItem('la_seeded_v7')){
 }
 
 // ================================================================
+//  la_seeded_v8 — New blog post: Lease templates, variables, and version control
+// ================================================================
+if(!localStorage.getItem('la_seeded_v8')){
+  DB.insert('resources', {
+    title: 'Managing Leases at Scale: Templates, Variables, and Version Control for Real Landlords',
+    type: 'blog',
+    category: 'all',
+    tags: ['lease','operations','templates','documentation','systems','scaling','property-management'],
+    description: 'Most landlords with multiple properties manage leases out of a folder, a desktop, or worse, an email inbox. Here is how to build a lease system that scales from one unit to fifty without losing your mind, your evidence, or your compliance position.',
+    eyebrow: 'Lease & Operations',
+    location: 'Canada',
+    readTime: '9 min read',
+    content:
+      '<div class="content-callout"><strong>A landlord recently asked in an online community:</strong> "How do you manage your leases and templates? What variables change between leases? How many templates do you have? What mistakes have you made?"<br><br>The answers in that thread ranged from "I just edit a Word document each time" to elaborate spreadsheet systems with dozens of variables. The right approach depends on how many doors you operate, but the underlying principles are the same at every scale.</div>' +
+
+      '<h3>Why This Matters More Than It Seems</h3>' +
+      '<p>A lease is not just a contract. It is the document that defines every aspect of the landlord-tenant relationship and the primary evidence you will rely on if anything ever goes to dispute. The cleanliness of your lease management system directly determines how strong your position is at the RTDRS, the LTB, or in court.</p>' +
+      '<p>Most small landlords manage leases the same way they manage their emails: chronologically, by hope, and by memory. This works fine until it doesn\'t. The mistakes do not show up in year one. They show up in year three, when you need to find the original signed copy of a lease that has been amended twice and the tenant disputes a clause you can no longer locate.</p>' +
+
+      '<h3>The Three-Layer Lease System</h3>' +
+      '<p>A functional lease management system has three layers: the base template, the property-specific variables, and the tenant-specific terms. Most landlords mix these together in one document, which is why their systems break.</p>' +
+
+      '<h4>Layer One: The Base Template</h4>' +
+      '<p>This is the legal skeleton of every lease. The provisions are identical across every property you own. The clauses are reviewed for compliance with your provincial tenancy legislation. This template gets updated rarely, only when legislation changes or when you identify a recurring weakness in your standard terms.</p>' +
+      '<p>Most landlords should have one base template per province they operate in. If you have properties in Alberta and Ontario, you have two base templates. The legal frameworks are different enough that trying to maintain a single hybrid template creates more risk than it removes.</p>' +
+      '<p>Your base template should cover: parties, premises identification, term type, rent and payment terms, security deposit handling, utilities, repairs and maintenance, entry rights, termination procedures, default and remedies, insurance requirements, and signatures. Everything else is property or tenant specific.</p>' +
+
+      '<h4>Layer Two: Property-Specific Variables</h4>' +
+      '<p>This is where most landlords lose track. Every property has unique characteristics that need to be reflected in the lease. A condo has different rules than a single-family home. A house with a pool has different requirements than a townhouse. A property with shared utilities has different language than one with separate meters.</p>' +
+      '<p>The right approach is to maintain a property profile for each unit. This is a one-page document that lists every property-specific variable: address, unit description, included appliances, parking allocations, pet policy, smoking policy, condo or HOA rules attachment, utility arrangements, internet or cable inclusions, snow removal responsibility, lawn care responsibility, and any special clauses unique to the property.</p>' +
+      '<p>When you generate a new lease, you combine the base template with the relevant property profile. The property profile changes only when the property changes (a new appliance is added, the pet policy is updated, etc.). It does not change between tenants.</p>' +
+
+      '<h4>Layer Three: Tenant-Specific Terms</h4>' +
+      '<p>These are the variables that change with every new tenant: tenant names, term start date, term end date or periodic designation, rent amount, security deposit amount, move-in date, key handover date, parking spot assignment (if shared), and any negotiated terms specific to that tenant.</p>' +
+      '<p>If your system separates these three layers, generating a new lease becomes mechanical. You pull the base template, attach the property profile, and fill in the tenant-specific terms. No copying and pasting. No risk of forgetting to update a clause from the previous tenant. No accidental inclusion of obsolete language.</p>' +
+
+      '<h3>What Variables Should Always Be Documented Separately</h3>' +
+      '<p>Beyond the lease itself, every tenancy generates documentation that needs to be tracked. Most landlords store these inside the lease document or in random folders. This breaks down fast.</p>' +
+      '<p>Keep these in a separate tenant file:</p>' +
+      '<ul><li>Signed lease with all addendums and initials</li><li>Move-in inspection with timestamped photographs</li><li>Move-out inspection (when applicable)</li><li>Rent ledger showing every payment with date, amount, and method</li><li>Tenant insurance certificate with renewal dates</li><li>All written communications of consequence</li><li>Maintenance request records</li><li>Notice records (rent increase notices, entry notices, etc.)</li><li>Renewal or amendment documents, in chronological order</li></ul>' +
+      '<p>The reason for this separation: when a dispute arises, you may need any one of these documents on short notice. If they are buried inside the lease itself or scattered across email and text messages, you cannot find them quickly. A tenant file is a single folder, digital or physical, that contains everything related to that specific tenancy in one place.</p>' +
+
+      '<h3>The Common Mistakes</h3>' +
+
+      '<h4>Editing the Last Lease</h4>' +
+      '<p>The most common mistake is taking the previous tenant\'s lease, changing the names and dates, and signing it. This carries forward errors. It also carries forward terms that were negotiated for the previous tenant but should not apply to the new one. A pet clause added for a specific tenant\'s dog should not appear in the next lease unless the new tenant also has a pet. A utility arrangement that worked for the previous tenant may not match the new arrangement.</p>' +
+      '<p>The fix is to always generate new leases from the clean base template, not from the previous lease. Treat the base template as the source of truth. Treat individual leases as instances of the template, not as documents to be edited.</p>' +
+
+      '<h4>No Version Control</h4>' +
+      '<p>Most landlords have no record of which template version was used for which lease. When provincial legislation changes, they have no way to identify which active leases reference outdated clauses. When a dispute reveals a problematic clause, they cannot easily check whether the same clause exists in other active leases.</p>' +
+      '<p>The fix is simple: every base template has a version number and a revision date. Every lease references which template version it was generated from. This takes 30 seconds per lease and saves hours when you eventually need to audit your portfolio.</p>' +
+
+      '<h4>Storing Leases in Email</h4>' +
+      '<p>Signed leases that exist only as PDF attachments in an email inbox are not accessible documents. They are buried artifacts. They cannot be searched, organized, or quickly retrieved. They are tied to a single email account, which creates risk if that account is compromised, lost, or changed.</p>' +
+      '<p>The fix is to maintain a structured digital filing system, either in a cloud storage system (Google Drive, Dropbox, or property management software) organized by property and tenant, or in a property management platform that handles document storage natively.</p>' +
+
+      '<h4>Verbal Amendments</h4>' +
+      '<p>"We agreed I could have a cat" or "we agreed the rent would be reduced by $50 if I cut the lawn" are conversations that happen verbally and never get documented. Six months later, neither party remembers exactly what was agreed.</p>' +
+      '<p>The fix is to treat every change to the original terms as a written amendment, signed by both parties, attached to the original lease. A two-line written confirmation of a verbal agreement is enough. The point is to create a paper trail that survives memory.</p>' +
+
+      '<h4>No Renewal Strategy</h4>' +
+      '<p>Many landlords let fixed-term leases expire without any active decision about what happens next. The tenancy converts to periodic by operation of law (in Ontario and BC) or by implied agreement (in Alberta) and the landlord loses control of the relationship.</p>' +
+      '<p>The fix is to set calendar reminders 90 days before any fixed-term lease ends. Decide actively whether to offer a renewal, offer a new fixed term, or allow the conversion to periodic. Communicate the decision in writing to the tenant. Document what was offered and what was accepted.</p>' +
+
+      '<div class="content-warning"><strong>The biggest risk is not the lease itself.</strong> It is the gap between the lease as written and the relationship as actually operating. When the two drift apart and nothing is documented, you have no defense if the situation deteriorates. Every change to the original deal needs to be in writing, signed, and attached to the file.</div>' +
+
+      '<h3>What This Looks Like at Different Scales</h3>' +
+
+      '<h4>One to Three Properties</h4>' +
+      '<p>A simple folder system works at this scale. One folder per property. Inside each property folder, one folder per tenancy with the signed lease, inspection, and rent ledger. A single base template per province in a master folder. This can run on Google Drive or Dropbox at no cost.</p>' +
+
+      '<h4>Four to Ten Properties</h4>' +
+      '<p>At this scale, manual management starts to create errors. Consider basic property management software like DoorLoop, TenantCloud, or Avail. These platforms generate leases from templates, track payments, and maintain digital files per tenancy. The cost is modest and the operational savings are significant.</p>' +
+
+      '<h4>Ten or More Properties</h4>' +
+      '<p>At this scale, a proper property management platform becomes essential. Buildium, Rentec, or AppFolio handle lease generation, version control, document storage, and reporting. They are not cheap, but neither are the lawsuits and disputes that result from poor documentation at scale.</p>' +
+
+      '<div class="content-formula"><div class="formula-text">A lease is only as strong as the system that maintains it.</div><div class="formula-sub">The document matters. The folder it lives in matters more.</div></div>' +
+
+      '<h3>The Honest Conclusion</h3>' +
+      '<p>The landlords who lose disputes at the RTDRS or the LTB are not the ones with the worst tenants. They are the ones with the worst documentation. A perfectly drafted lease that you cannot locate, or that you have amended verbally without record, is worse than a simpler lease that is well-organized and properly maintained.</p>' +
+      '<p>Build the system before you need it. The mistake is always to fix the system after the first dispute. By then, the documentation gaps that contributed to the dispute have already been exposed. Build the structure when you have the time, so you have it when you need it.</p>' +
+      '<p>Three layers: base template, property profile, tenant terms. One tenant file per tenancy. Version numbers on every template. Written amendments for every change. Active renewal decisions before every term ends. None of this requires expensive software. It requires consistency.</p>' +
+
+      '<div class="content-bridge"><strong>Want help building your lease and documentation system?</strong><p>Landlord Academy advisory sessions cover lease audits, template design, and documentation systems for small portfolios. Book a session if you want to walk through your specific setup, or browse the free resources for templates and checklists you can use immediately.</p></div>'
+  });
+  localStorage.setItem('la_seeded_v8', '1');
+}
+
+// ================================================================
 //  LEGAL REFERENCE HUB DATA
 // ================================================================
 const LEGAL_HUB = {
