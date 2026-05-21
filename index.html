@@ -3646,7 +3646,7 @@ const App = {
   // FREE RESOURCES
   renderResources(){
     const filter = this.state.resourceFilter || 'all';
-    const allRes = DB.getAll('resources').filter(r=>r.type!=='video');
+    const allRes = DB.getAll('resources').filter(r=>r.type!=='video').sort((a,b)=>b.id-a.id);
     const filtered = filter==='all' ? allRes : allRes.filter(r=>r.type===filter);
     const types = [{key:'all',label:'All Resources'},{key:'blog',label:'&#128221; Blogs'},{key:'guide',label:'&#128214; Guides'}];
     return `<div style="background:var(--dark);color:#fff;padding:60px 24px">
