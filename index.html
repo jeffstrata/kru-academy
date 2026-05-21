@@ -2310,6 +2310,74 @@ if(!localStorage.getItem('la_seeded_v5')){
 }
 
 // ================================================================
+//  la_seeded_v6 — New blog post: Touring a tenant's current apartment
+// ================================================================
+if(!localStorage.getItem('la_seeded_v6')){
+  DB.insert('resources', {
+    title: "Should You Tour a Tenant's Current Apartment Before You Approve Them?",
+    type: 'blog',
+    category: 'all',
+    tags: ['screening','application','tenant-selection','operations','landlord','property-management'],
+    description: "A growing number of Canadian landlords are asking applicants to allow a walkthrough of their current home as part of the screening process. Here is the legal, practical, and operational case for and against it, plus a defensible alternative that gives you the same signal without the risk.",
+    eyebrow: 'Tenant Screening',
+    location: 'Canada',
+    readTime: '7 min read',
+    content:
+      '<div class="content-callout"><strong>The question that started this:</strong> A landlord posted in an online community asking whether it is reasonable to view an applicant\'s current apartment before approving them as a tenant. The thread drew over 170 responses with sharply divided opinions. The question deserves a serious answer.</div>' +
+
+      '<h3>Why Landlords Started Doing This</h3>' +
+      '<p>The logic is straightforward. References can be coached. Application forms can be tidied up. Credit checks show financial behaviour but not lifestyle. Bank statements show income but not habits. The condition of the place where someone currently lives, however, shows you how they actually live.</p>' +
+      '<p>Some landlords describe this as the single most predictive signal they have found. Others have built informal screening rituals around it. Look at the applicant\'s car. Notice whether they arrive on time to the showing. Pay attention to the kitchen, the bathroom, and the general level of clutter in their current home.</p>' +
+      '<p>The argument in favour is simple. The condition of your investment property is downstream of the habits of the person living in it. If you can see the habits in advance, you can predict the outcome.</p>' +
+
+      '<h3>The Argument Against</h3>' +
+      '<p>The argument against is also strong, and it operates on three levels.</p>' +
+
+      '<h4>Legal Exposure</h4>' +
+      '<p>Asking to tour an applicant\'s current home introduces a category of subjective judgement that human rights legislation does not look kindly upon. The Alberta Human Rights Act and equivalent provincial legislation protect tenants against discrimination based on family status, marital status, source of income, ancestry, disability, and other grounds. A walkthrough exposes you to information that touches on every one of these categories.</p>' +
+      '<p>You will see whether children live there. You will see religious items. You will see medical equipment. You will see cultural practices. You will see who else lives in the home. You may also see things that have nothing to do with how the applicant will treat your property, but which could later be argued to have influenced your decision.</p>' +
+      '<p>If you reject an applicant after a walkthrough, the burden may shift to you to demonstrate that your decision had nothing to do with the protected characteristics you observed. That is a difficult position to defend.</p>' +
+
+      '<h4>The Correlation Is Weaker Than It Looks</h4>' +
+      '<p>Several experienced landlords in the original discussion pointed out that the condition of a car, or even the current living space, is not always a reliable predictor of how someone will treat a future property. A contractor\'s truck is full of tools and dust. A parent of young children has a different relationship with clutter than a single professional. A nurse coming off a night shift has a different presentation than someone with predictable hours.</p>' +
+      '<p>The signal exists, but it is noisier than landlords often assume. Decisions made on a single observation in someone\'s current home can confirm a bias that was already present rather than reveal new information.</p>' +
+
+      '<h4>The Power Dynamic</h4>' +
+      '<p>The third concern is structural. Asking to tour someone\'s home shifts the application process into territory where the applicant has limited ability to refuse. A landlord asking, “Can I see where you live now?” is not really asking. They are conditioning approval on access to a space the applicant has a reasonable expectation of privacy in. Many applicants will comply because they need the housing, even if they would prefer not to. This creates documentation problems if the relationship later goes sideways.</p>' +
+
+      '<div class="content-warning"><strong>The legal reality:</strong> While it is not explicitly illegal in Alberta, Ontario, or BC to request a walkthrough of an applicant\'s current home, the practice creates significant human rights exposure. The information you cannot avoid seeing during such a visit overlaps directly with multiple protected grounds. If you reject the applicant afterward, you may struggle to defend the decision in front of a human rights tribunal.</div>' +
+
+      '<h3>What the Best Operators Do Instead</h3>' +
+      '<p>The signal landlords are reaching for when they request a walkthrough is legitimate. The way they are trying to capture it creates more risk than reward. A better approach gets you most of the same information through methods that are defensible, consistent, and legally clean.</p>' +
+
+      '<h4>The Verified Landlord Reference Done Properly</h4>' +
+      '<p>The most predictive screening signal is not a tour of the current home. It is a careful conversation with the current landlord. Most landlords ask a few perfunctory questions and accept whatever answers they receive. The operators who do this well treat the reference call as a structured interview.</p>' +
+      '<p>Ask specific, behavioural questions. Did the tenant report maintenance issues promptly? Were they responsive to communication? Did they pay rent on time, every month, for the full term? Did neighbours complain about noise, smell, or guests? Did the unit require any unusual cleaning or repair after they vacated? Would you rent to them again? Pay attention not just to the words but to the pauses, the hedging, and the tone.</p>' +
+      '<p>A landlord who answers “yes, no problems” in a flat voice is telling you something different than a landlord who answers with genuine enthusiasm and specific stories. The second is gold. The first is a polite way of avoiding a lawsuit.</p>' +
+
+      '<h4>The Application Itself</h4>' +
+      '<p>How an applicant completes the application form is itself a signal. A complete, legible, signed, and accurate application reflects the same habits as a clean home. A sloppy, incomplete, or evasive application reflects different habits. This signal is captured during a process that is consistent for every applicant, which makes it defensible.</p>' +
+
+      '<h4>The Showing</h4>' +
+      '<p>The applicant\'s behaviour during the showing of your property is observable signal that does not require entering their home. Are they on time? Are they respectful of the space? Do they ask thoughtful questions or do they ignore obvious issues? Do their answers during the showing match the answers they gave during the inquiry call? Consistency between contacts is a stronger predictor than a one-time observation in their living space.</p>' +
+
+      '<h4>Photographs of the Current Unit, Voluntarily Provided</h4>' +
+      '<p>If you genuinely want a visual signal and the applicant is comfortable providing one, a less invasive option exists. Ask the applicant if they would be willing to share two or three recent photos of their current living space, taken by them, at their discretion. This shifts the dynamic. The applicant chooses what to share. The landlord cannot observe protected characteristics they were not shown. The applicant who refuses is not penalized, because the request is presented as optional.</p>' +
+      '<p>This will not work for every situation, and some applicants will refuse. But for landlords who feel they need a visual signal, this approach captures most of the benefit with a fraction of the risk.</p>' +
+
+      '<div class="content-formula"><div class="formula-text">The signal you want exists. The method matters.</div><div class="formula-sub">A consistent, structured screening process beats subjective in-person observation every time.</div></div>' +
+
+      '<h3>The Honest Conclusion</h3>' +
+      '<p>If you are a landlord considering whether to ask applicants to tour their current homes, the answer is probably no. Not because the instinct is wrong, but because the method introduces legal exposure that better methods do not.</p>' +
+      '<p>If you want the signal that a walkthrough seems to promise, build a more rigorous reference call protocol, pay closer attention to how applicants behave during the application process itself, and consider asking for voluntary photographs as a last step rather than a required tour.</p>' +
+      '<p>The landlords with the lowest tenant problem rates are not the ones who inspect the most carefully. They are the ones who screen the most consistently. A defensible, repeatable process applied uniformly to every applicant will catch the patterns that matter while protecting you from the patterns that look like discrimination, even when they were not.</p>' +
+
+      '<div class="content-bridge"><strong>Want a defensible screening process you can actually use?</strong><p>The Landlord Academy Tenant Screening Red Flags Quick Reference and the full Move-In Approval Checklist are free resources designed to give you a consistent, legally sound screening framework. Browse the resources section to download both.</p></div>'
+  });
+  localStorage.setItem('la_seeded_v6', '1');
+}
+
+// ================================================================
 //  LEGAL REFERENCE HUB DATA
 // ================================================================
 const LEGAL_HUB = {
